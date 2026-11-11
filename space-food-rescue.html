@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#061225">
+  <title>ASTRAQUEST | Food Supply Crisis</title>
+  <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/moon-dashboard.css"><link rel="stylesheet" href="css/dashboard-consistency.css"><link rel="stylesheet" href="css/shared-header.css"><link rel="stylesheet" href="css/dashboard-viewport.css"><link rel="stylesheet" href="css/dashboard-reference.css"><link rel="stylesheet" href="css/food-rescue.css"><link rel="stylesheet" href="css/food-rescue-dashboard.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dashboard-page food-rescue-page">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ASTRAQUEST home"><img src="assets/astraquest-logo.png" alt="ASTRAQUEST — Junior Astronaut Mission Trainer"></a>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="tutorial.html">How it works</a><a class="nav-link" href="index.html#learn">Levels</a><a class="nav-link" href="nasa-data.html">NASA Data</a><a class="nav-link" href="store.html">Store</a></nav>
+    <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+  </header>
+  <main class="dashboard-shell food-shell">
+    <aside class="left-column">
+      <section class="panel overview-panel"><h2>MISSION OVERVIEW</h2><div class="overview-row"><i data-lucide="rocket"></i><div><span>Rocket</span><strong id="rocketName">Pioneer-1</strong></div><img id="overviewMoon" src="assets/moon.png" alt="Moon"></div><div class="overview-row"><i data-lucide="users"></i><div><span>Crew</span><strong id="crewCount">4 Members</strong></div></div><div class="overview-row"><i data-lucide="moon-star"></i><div><span>Destination</span><strong id="destinationTitle">Moon</strong></div></div><div class="overview-row"><i data-lucide="package"></i><div><span>Food Supply</span><strong id="foodStock">250 units</strong></div></div><img class="food-mission-thumb" src="assets/moon-destination-thumbnail.png" alt="Moon mission surface"></section>
+      <section class="panel crew-panel"><div class="panel-heading"><h2>CREW MEMBERS</h2><a href="crew-selection.html">View Details <i data-lucide="arrow-right"></i></a></div><div id="foodCrewList" class="crew-list"></div><p id="foodCrewNote" class="crew-note"></p></section>
+    </aside>
+    <section class="center-column food-center">
+      <div class="dashboard-title food-dashboard-title"><div><p class="food-kicker">AUTOMATIC CRISIS ALERT · MISSION DAY <span id="crisisMissionDay">2</span></p><h1 id="dashboardMissionTitle">FOOD SUPPLY <span>CRISIS</span></h1><p>Rescue drifting meal packets before they escape the habitat.</p></div><div class="food-status-strip"><div><i data-lucide="package-check"></i><span>Packets<strong><b id="caughtTop">0</b> / 10</strong></span></div><div><i data-lucide="timer"></i><span>Time<strong id="timerTop">00:20</strong></span></div></div></div>
+      <section class="panel food-game"><div class="game-heading-row"><div><p class="brief-kicker" id="gameStepLabel">CRISIS RESPONSE</p><h2 id="gameTitle">FOOD SUPPLY</h2></div><button class="exit-game" id="exitGame" type="button" aria-label="Return to dashboard">×</button></div><div id="gameContent"></div></section>
+      <section class="panel resource-panel food-resource-panel"><div class="panel-heading"><h2>RESOURCE STATUS</h2><div>Total available: <strong id="foodResourceTotal">1000</strong> Units</div></div><div id="foodResourceGrid" class="resource-grid"></div></section>
+      <section class="panel progression-panel food-progression"><div class="panel-heading"><h2>LEVEL PROGRESSION</h2><span>MOON · LEVEL 1</span></div><div class="food-level-track"><i class="active">1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i></div></section>
+    </section>
+    <aside class="right-column food-right">
+      <section class="panel event-panel"><h2>TODAY'S EVENT</h2><div class="event-title"><i data-lucide="alert-circle"></i><strong>Food Supply Emergency</strong></div><img class="event-image" src="assets/space-food.png" alt="Packaged meals floating in a spacecraft"><p>A food container has opened. Catch the floating meal packets to protect mission supplies.</p><div class="event-countdown">CRISIS ACTIVE · RESPONDING</div></section>
+      <section class="panel quick-panel"><h2>QUICK ACTIONS</h2><div class="quick-grid"><a href="allocate-resources.html"><i data-lucide="package"></i><span>Resources</span></a><a href="mission-results.html"><i data-lucide="file-text"></i><span>Mission Log</span></a><a href="nasa-data.html"><i data-lucide="flask-conical"></i><span>Research</span></a><a href="crew-selection.html"><i data-lucide="users"></i><span>Manage Crew</span></a></div></section>
+      <section class="panel conditions-panel"><h2>BASE CONDITIONS</h2><div class="condition-items"><div><i data-lucide="thermometer"></i><span>Temperature<br><b>-173 °C</b></span></div><div><i data-lucide="radiation"></i><span>Radiation<br><b>Safe</b></span></div><div><i data-lucide="wind"></i><span>Dust Storm<br><b>None</b></span></div><div><i data-lucide="sun"></i><span>Sunlight<br><b>12 hours</b></span></div></div><img src="assets/dashboard-conditions.png" alt="Lunar habitat conditions"></section>
+    </aside>
+  </main>
+  <script src="js/shared-header.js"></script><script src="js/space-food-rescue.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#06101e">
+  <meta name="description" content="Explore NASA-inspired space topics, spacecraft, astronaut life, space food, energy, and missions with ASTRAQUEST.">
+  <title>NASA Data | ASTRAQUEST</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/nasa-data.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/shared-header.css">
+</head>
+<body class="home-page nasa-data-page">
+  <!-- Shared site header: keep consistent with the homepage -->
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ASTRAQUEST home">
+      <img src="assets/astraquest-logo.png" alt="ASTRAQUEST — Junior Astronaut Mission Trainer">
+    </a>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="tutorial.html">How it works</a>
+      <a class="nav-link" href="index.html#learn">Levels</a>
+      <a class="nav-link active" href="nasa-data.html" aria-current="page">NASA Data</a>
+      <a class="nav-link" href="store.html">Store</a>
+    </nav>
+    <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+  </header>
+
+  <main>
+    <section class="nasa-hero" aria-labelledby="nasaHeroTitle">
+      <div class="nasa-hero-backdrop" role="img" aria-label="A cratered moon, distant planets, and a star-filled galaxy above an alien landscape"></div>
+      <div class="nasa-hero-content">
+        <p class="nasa-eyebrow"><span></span> ASTRAQUEST DATA EXPLORER</p>
+        <h1 id="nasaHeroTitle">EXPLORE <span>NASA DATA</span></h1>
+        <p>Access space science, explore the universe, and discover amazing facts about our solar system, planets, missions, spacecraft and more. Learn through interactive topics and start your space journey today.</p>
+        <a class="nasa-explore-button" href="#nasaTopics">Explore Topics <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="hero-coordinate" aria-hidden="true">DEEP SPACE // DATA TRANSMISSION ACTIVE</div>
+    </section>
+
+    <section class="nasa-topics" id="nasaTopics" aria-label="NASA Data learning topics">
+      <article class="nasa-topic-card">
+        <a class="topic-image-link" href="rockets-spacecraft.html" aria-label="Explore Rockets and Spacecraft at NASA">
+          <img src="assets/rockets-spacecraft.png" alt="A rocket launching between tall launch towers" loading="lazy">
+        </a>
+        <div class="topic-details">
+          <div class="topic-icon"><i data-lucide="rocket"></i></div>
+          <div class="topic-copy"><h2>Rockets &amp; Spacecraft</h2><p>Explore spacecraft, launch vehicles, and the technology that carries missions into space.</p></div>
+          <a class="topic-arrow" href="rockets-spacecraft.html" aria-label="Open NASA missions"><i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="nasa-topic-card">
+        <a class="topic-image-link" href="space-food.html" aria-label="Explore space food and astronaut life at NASA">
+          <img src="assets/space-food.png" alt="Packaged astronaut meals floating inside a space station" loading="lazy">
+        </a>
+        <div class="topic-details">
+          <div class="topic-icon"><i data-lucide="utensils"></i></div>
+          <div class="topic-copy"><h2>Space Food</h2><p>Discover what astronauts eat in space and how meals are prepared for microgravity.</p></div>
+          <a class="topic-arrow" href="space-food.html" aria-label="Explore NASA human spaceflight"><i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="nasa-topic-card">
+        <a class="topic-image-link" href="space-power-energy.html" aria-label="Explore space power and energy at NASA">
+          <img src="assets/space-power-energy.png" alt="Space station solar arrays orbiting above Earth" loading="lazy">
+        </a>
+        <div class="topic-details">
+          <div class="topic-icon"><i data-lucide="zap"></i></div>
+          <div class="topic-copy"><h2>Space Power &amp; Energy</h2><p>Learn how solar arrays and other power systems support spacecraft and astronauts.</p></div>
+          <a class="topic-arrow" href="space-power-energy.html" aria-label="Explore NASA technology"><i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="nasa-topic-card">
+        <a class="topic-image-link" href="space-basics.html" aria-label="Explore solar system basics at NASA">
+          <img src="assets/space-basics.png" alt="The Sun and planets arranged across the Solar System" loading="lazy">
+        </a>
+        <div class="topic-details">
+          <div class="topic-icon"><i data-lucide="orbit"></i></div>
+          <div class="topic-copy"><h2>Space Basics</h2><p>Learn the fundamentals of space, planets, moons, orbits, and our solar system.</p></div>
+          <a class="topic-arrow" href="space-basics.html" aria-label="Explore NASA Solar System"><i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="nasa-topic-card">
+        <a class="topic-image-link" href="astronaut-life.html" aria-label="Explore astronaut life at NASA">
+          <img src="assets/astronaut-life.png" alt="An astronaut in a spacesuit working beside a space station above Earth" loading="lazy">
+        </a>
+        <div class="topic-details">
+          <div class="topic-icon"><i data-lucide="user-round"></i></div>
+          <div class="topic-copy"><h2>Astronaut Life</h2><p>Explore astronaut training, spacewalks, daily life, health, and mission routines.</p></div>
+          <a class="topic-arrow" href="astronaut-life.html" aria-label="Explore NASA human spaceflight"><i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="nasa-topic-card">
+        <a class="topic-image-link" href="space-missions-exploration.html" aria-label="Explore space missions and exploration at NASA">
+          <img src="assets/space-missions-exploration.png" alt="A robotic rover exploring a rugged Martian landscape" loading="lazy">
+        </a>
+        <div class="topic-details">
+          <div class="topic-icon"><i data-lucide="flag"></i></div>
+          <div class="topic-copy"><h2>Space Missions &amp; Exploration</h2><p>Explore past, current, and future missions studying the Moon, Mars, and beyond.</p></div>
+          <a class="topic-arrow" href="space-missions-exploration.html" aria-label="Explore NASA missions"><i data-lucide="arrow-right"></i></a>
+        </div>
+      </article>
+    </section>
+
+    <section class="nasa-source-note">
+      <i data-lucide="info"></i>
+      <p><strong>Explore responsibly.</strong> Topic links open NASA's public website. This page is an ASTRAQUEST learning interface, not an official NASA website.</p>
+    </section>
+  </main>
+
+  <footer class="nasa-footer"><span>© <span id="year"></span> ASTRAQUEST</span><span>EXPLORE · LEARN · SURVIVE</span></footer>
+  <script src="js/nasa-data.js"></script>
+<script src="js/shared-header.js"></script>
+</body>
+</html>

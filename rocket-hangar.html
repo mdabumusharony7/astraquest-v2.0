@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#031020">
+  <meta name="description" content="Choose and manage your ASTRAQUEST Moon and Mars spacecraft.">
+  <title>Rocket Hangar | ASTRAQUEST</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/rocket-hangar.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/shared-header.css">
+</head>
+<body class="hangar-page">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ASTRAQUEST home">
+      <img src="assets/astraquest-logo.png" alt="ASTRAQUEST — Junior Astronaut Mission Trainer">
+    </a>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="tutorial.html">How it works</a>
+      <a class="nav-link" href="index.html#learn">Levels</a>
+      <a class="nav-link" href="nasa-data.html">NASA Data</a>
+      <a class="nav-link active" href="store.html" aria-current="page">Store</a>
+    </nav>
+    <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+  </header>
+
+  <main class="hangar-main">
+    <section class="hangar-heading">
+      <div class="eyebrow"><span>HANGAR</span><i></i></div>
+      <h1><span>ROCKET</span> HANGAR</h1>
+      <p>Choose your spacecraft. Prepare for the next frontier.</p>
+    </section>
+
+    <section class="hangar-toolbar" aria-label="Rocket controls">
+      <div class="view-tabs" role="group" aria-label="Rocket view">
+        <button class="view-tab active" data-view="owned"><i data-lucide="rocket"></i> Owned Rockets</button>
+        <button class="view-tab" data-view="browse"><i data-lucide="search"></i> Browse Rockets</button>
+      </div>
+      <div class="toolbar-right">
+        <div class="currency-pill"><span class="coin-icon">◈</span><span id="coinBalance">1,200</span><small>COINS</small></div>
+        <div class="currency-pill diamond-pill"><span class="diamond-icon">◆</span><span id="diamondBalance">25</span><small>DIAMONDS</small></div>
+        <label class="sort-control"><span class="sr-only">Sort rockets</span><select id="sortSelect"><option value="name">Sort: Name</option><option value="capacity">Sort: Cargo</option><option value="price">Sort: Price</option></select><i data-lucide="sliders-horizontal"></i></label>
+      </div>
+    </section>
+
+    <section class="mission-filter" aria-label="Filter rockets by mission">
+      <button class="mission-chip active" data-mission="all">All rockets <span>06</span></button>
+      <button class="mission-chip" data-mission="moon"><i data-lucide="moon"></i> Moon <span>03</span></button>
+      <button class="mission-chip" data-mission="mars"><i data-lucide="orbit"></i> Mars <span>03</span></button>
+      <div class="filter-note"><i data-lucide="mouse-pointer-2"></i> Select a rocket to view its details</div>
+    </section>
+
+    <section class="rocket-grid" id="rocketGrid" aria-label="Available rockets"></section>
+
+    <section class="selection-panel" id="selectionPanel" aria-live="polite">
+      <div class="selection-art"><img id="selectedImage" src="assets/moon-rocket-1.png" alt="Selected rocket"><span class="art-glow"></span></div>
+      <div class="selection-info">
+        <div class="selection-kicker"><span id="selectedMission">MOON CLASS</span><span class="status-dot"></span><span id="selectedStatus">OWNED</span></div>
+        <h2 id="selectedName">Lunar Explorer</h2>
+        <p id="selectedDescription">A reliable starter spacecraft built for early lunar missions.</p>
+        <div class="spec-grid">
+          <div class="spec"><span><i data-lucide="package"></i> BASE CARGO</span><strong id="selectedCargo">1,000 <small>units</small></strong></div>
+          <div class="spec"><span><i data-lucide="layers"></i> UPGRADE STAGES</span><strong id="selectedStages">2 <small>stages</small></strong></div>
+          <div class="spec"><span><i data-lucide="shield-check"></i> MAX CARGO</span><strong id="selectedMaxCargo">1,500 <small>units</small></strong></div>
+          <div class="spec"><span><i data-lucide="users"></i> CREW</span><strong id="selectedCrew">4 <small>members</small></strong></div>
+        </div>
+        <div class="selection-actions">
+          <button class="primary-action" id="primaryAction"><i data-lucide="check-circle"></i><span>Selected</span></button>
+          <button class="secondary-action" id="upgradeAction"><i data-lucide="wrench"></i> View upgrades</button>
+        </div>
+        <p class="action-message" id="actionMessage" role="status"></p>
+      </div>
+    </section>
+    <section class="upgrade-panel" id="upgradePanel" aria-live="polite" hidden>
+      <div class="upgrade-heading">
+        <div><div class="eyebrow"><span>ROCKET SYSTEMS</span><i></i></div><h2>Upgrade Metrics</h2><p id="upgradeIntro">Select an owned rocket to inspect its upgrade path.</p></div>
+        <div class="upgrade-current"><span>UPGRADE PROFILE</span><strong id="upgradeCurrentCargo">LEVEL 1 <small>/ 5</small></strong></div>
+      </div>
+      <div class="upgrade-metrics" id="upgradeMetrics"></div>
+      <div class="upgrade-list" id="upgradeList"></div>
+      <p class="upgrade-note" id="upgradeNote">Upgrades are specific to each rocket and do not transfer between spacecraft.</p>
+    </section>
+
+    <footer class="hangar-footer"><span>ASTRAQUEST FLIGHT SYSTEMS</span><span>EXPLORE · LEARN · SURVIVE</span><a href="store.html">← Back to Space Store</a></footer>
+  </main>
+
+  <dialog class="confirm-dialog" id="purchaseDialog">
+    <form method="dialog" class="dialog-inner">
+      <button class="dialog-close" aria-label="Close" value="cancel"><i data-lucide="x"></i></button>
+      <span class="dialog-icon"><i data-lucide="rocket"></i></span>
+      <p class="eyebrow-dialog">SPACECRAFT UNLOCK</p>
+      <h2 id="dialogTitle">Unlock rocket?</h2>
+      <p id="dialogDescription">Unlock this rocket using your earned coins.</p>
+      <div class="dialog-price"><span>PRICE</span><strong id="dialogPrice">500 ◈</strong></div>
+      <div class="dialog-actions"><button class="secondary-action" value="cancel">Cancel</button><button class="primary-action" id="confirmPurchase" value="default">Confirm unlock</button></div>
+    </form>
+  </dialog>
+  <script src="js/script.js"></script>
+  <script src="js/rocket-hangar.js"></script>
+<script src="js/shared-header.js"></script>
+</body>
+</html>

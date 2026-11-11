@@ -1,0 +1,186 @@
+/* ASTRAQUEST SPACE STORE — full-screen background and three category cards */
+.store-page {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  color: #f4f8ff;
+  background: #020c19 url('../assets/space-store-bg.png')
+    center center / cover fixed no-repeat;
+}
+
+.store-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+/* Let the generated space background show behind the entire page, including the header. */
+.store-page main,
+.store-page .store-main {
+  min-height: calc(100vh - 56px);
+  background: transparent;
+}
+
+.store-page .site-header {
+  background: rgba(2, 12, 25, 0.84);
+  backdrop-filter: blur(10px);
+}
+
+.store-hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 170px;
+  padding: 28px clamp(24px, 6.2vw, 68px) 18px;
+  background: transparent;
+}
+
+.store-hero-copy { width: 100%; }
+
+.store-hero h1 {
+  margin: 0;
+  color: #f7faff;
+  font-size: clamp(36px, 5vw, 55px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .55);
+}
+
+.store-title-line {
+  display: block;
+  width: min(100%, 360px);
+  height: 2px;
+  margin-top: 14px;
+  background: linear-gradient(90deg, #00d9ff, rgba(0, 191, 255, 0));
+  box-shadow: 0 0 12px rgba(0, 191, 255, .55);
+}
+
+.store-categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0 clamp(24px, 6.2vw, 68px) 48px;
+  margin: 120px 0 0;
+}
+
+.store-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: clamp(245px, 27vw, 290px);
+  overflow: hidden;
+  border: 1.5px solid #00bfff;
+  border-radius: 14px;
+  background: linear-gradient(
+  180deg,
+  rgba(1, 10, 22, .02) 25%,
+  rgba(1, 10, 22, .12) 52%,
+  rgba(1, 10, 22, .78) 100%
+);
+  box-shadow: 0 0 13px rgba(0, 191, 255, .12), inset 0 0 18px rgba(0, 191, 255, .06);
+  color: #fff;
+  text-decoration: none;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+
+.store-card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(1, 10, 22, .02) 25%, rgba(1, 10, 22, .18) 52%, rgba(1, 10, 22, .96) 100%);
+}
+
+.store-card > img {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;
+  transition: transform .4s ease;
+}
+
+.store-card:hover {
+  transform: translateY(-4px);
+  border-color: #31dcff;
+  box-shadow: 0 0 24px rgba(0, 191, 255, .35);
+}
+
+.store-card:hover > img { transform: scale(1.045); }
+
+.store-card-icon {
+  position: absolute;
+  top: 15px;
+  left: 16px;
+  display: grid;
+  place-items: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 10px;
+  background: rgba(2, 19, 38, .76);
+  color: #00d5ff;
+  filter: drop-shadow(0 0 8px rgba(0, 191, 255, .48));
+}
+
+.store-card-icon svg { width: 25px; height: 25px; stroke-width: 2.5; }
+
+.store-card-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 22px 19px;
+  max-width: 85%;
+}
+
+.store-card-content strong {
+  font-size: clamp(24px, 2.8vw, 32px);
+  font-weight: 850;
+  line-height: 1.12;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .6);
+}
+
+.store-card-arrow {
+  position: absolute;
+  right: 17px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #00baff;
+  border-radius: 50%;
+  color: #00d5ff;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.store-card-arrow svg { width: 18px; height: 18px; }
+.store-card:hover .store-card-arrow { background: #00466c; transform: translateX(2px); }
+
+@media (min-width: 1200px) {
+  .store-categories { gap: 18px; }
+  .store-card { min-height: 286px; }
+}
+
+@media (max-width: 900px) {
+  .store-page { background-attachment: scroll; background-position: 58% center; }
+  .store-hero { min-height: 115px; }
+  .store-categories { gap: 12px; padding-left: 18px; padding-right: 18px; }
+  .store-card { min-height: 245px; }
+  .store-card-content { padding: 16px; }
+  .store-card-content strong { font-size: 25px; }
+}
+
+@media (max-width: 620px) {
+  .store-page { background-position: 62% center; }
+  .store-hero { min-height: 110px; padding: 26px 18px 16px; }
+  .store-categories { grid-template-columns: 1fr; padding: 0 14px 28px; gap: 12px; }
+  .store-card { min-height: 255px; }
+  .store-card-content strong { font-size: 29px; }
+}

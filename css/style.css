@@ -1,0 +1,1701 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+:root {
+    --bg: #020914;
+    --cyan: #00c8ff;
+    --orange: #ff873c;
+    --text: #f5f8ff;
+    --muted: #c7d9ef;
+    --frame-gap: clamp(8px,1vw,16px);
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+body {
+    margin: 0;
+    background: #000711;
+    color: var(--text);
+    font-family: Inter,Arial,sans-serif;
+    min-height: 100vh;
+}
+button,a {
+    font: inherit;
+}
+button {
+    cursor: pointer;
+}
+.page-frame {
+    margin: var(--frame-gap);
+    min-height: calc(100vh - var(--frame-gap)*2);
+    border: 3px solid var(--cyan);
+    border-radius: 24px;
+    overflow: clip;
+    background: var(--bg);
+    box-shadow: 0 0 13px #00bfff8a,inset 0 0 18px #00aaff22;
+}
+.site-header {
+    height: 76px;
+    padding: 7px 2.2% 7px 1.4%;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid #0787bc;
+    background: #020d1c;
+    position: relative;
+    z-index: 5;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    width: min(390px,30%);
+    min-width: 210px;
+    height: 100%;
+}
+.brand img {
+    display: block;
+    width: 100%;
+    max-height: 64px;
+    object-fit: contain;
+    object-position: left center;
+}
+.main-nav {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: clamp(24px,4.7vw,78px);
+    margin-left: auto;
+    height: 100%;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+    position: relative;
+    text-decoration: none;
+    color: #e2eaf8;
+    font-size: clamp(13px,1.1vw,18px);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color .2s;
+}
+.nav-link:hover,.nav-link.active {
+    color: var(--cyan);
+}
+.nav-link.active:after {
+    content: "";
+    height: 4px;
+    background: var(--cyan);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 12px var(--cyan);
+}
+.profile-wrap {
+    position: relative;
+    margin-left: clamp(12px,2vw,34px);
+}
+.profile-button {
+    width: 47px;
+    height: 47px;
+    display: grid;
+    place-items: center;
+    color: white;
+    background: transparent;
+    border: 2px solid #a7d7ff;
+    border-radius: 50%;
+    transition: .2s;
+}
+.profile-button:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+    box-shadow: 0 0 15px #00bfff70;
+}
+.profile-button svg {
+    width: 27px;
+    height: 27px;
+}
+.profile-menu {
+    position: absolute;
+    right: 0;
+    top: 58px;
+    width: 220px;
+    padding: 14px;
+    border: 1px solid var(--cyan);
+    border-radius: 12px;
+    background: #06182b;
+    box-shadow: 0 0 20px #00bfff35;
+}
+.profile-menu strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.profile-menu button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    border-radius: 6px;
+}
+.profile-menu button:hover {
+    background: #0b2b46;
+}
+.mobile-menu {
+    display: none;
+    color: var(--cyan);
+    border: 1px solid #00bfff70;
+    border-radius: 8px;
+    background: transparent;
+    padding: 8px;
+}
+.hero {
+    height: clamp(450px,33.5vw,550px);
+    min-height: 470px;
+    position: relative;
+    overflow: hidden;
+    background: #020b18;
+}
+.hero-backdrop {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg,#020b18 0%,#020b18f2 23%,#020b1850 49%,#020b1800 75%),url("../assets/mars-hero.png");
+    background-size: cover;
+    background-position: center 54%;
+    opacity: .98;
+}
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: clamp(35px,3.4vw,56px) 4.2%;
+    max-width: 790px;
+}
+.eyebrow-line {
+    display: block;
+    width: 54px;
+    height: 5px;
+    border-radius: 5px;
+    background: var(--cyan);
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #00bfff55;
+}
+.hero h1 {
+    font-size: clamp(42px,4.8vw,78px);
+    line-height: .99;
+    letter-spacing: -.045em;
+    font-weight: 900;
+    margin: 0 0 15px;
+    text-shadow: 0 2px 12px #03101e;
+}
+.hero h1 span {
+    color: var(--cyan);
+}
+.hero h1 em {
+    color: #00bfff;
+    font-style: normal;
+}
+.hero h2 {
+    margin: 12px 0;
+    font-size: clamp(23px,2.25vw,37px);
+    line-height: 1.2;
+    color: #d6e5fa;
+    letter-spacing: -.025em;
+}
+.hero p {
+    color: #c8dbf0;
+    font-size: clamp(15px,1.28vw,20px);
+    line-height: 1.42;
+    margin: 0;
+    max-width: 620px;
+}
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 27px;
+}
+.button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    border-radius: 10px;
+    min-height: 58px;
+    padding: 0 23px;
+    color: white;
+    font-weight: 800;
+    font-size: 15px;
+    border: 2px solid transparent;
+    transition: transform .2s,box-shadow .2s,background .2s;
+    white-space: nowrap;
+}
+.button:hover {
+    transform: translateY(-2px);
+}
+.button svg {
+    width: 23px;
+    height: 23px;
+    flex-shrink: 0;
+}
+.button-primary {
+    background: linear-gradient(115deg,#00baf4,#0789ff);
+    border-color: #00c8ff;
+    box-shadow: 0 0 20px #009fff72,inset 0 0 10px #ffffff20;
+    min-width: 325px;
+}
+.button-primary:hover {
+    box-shadow: 0 0 28px #00bfffaa;
+}
+.button-outline {
+    background: #031225dd;
+    border-color: var(--cyan);
+    min-width: 296px;
+    box-shadow: inset 0 0 12px #00aaff12;
+}
+.button-outline svg {
+    color: var(--cyan);
+}
+.button-outline:hover {
+    background: #06304a;
+    box-shadow: 0 0 18px #00bfff55;
+}
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 0 2.2% 26px;
+    margin-top: -2px;
+    position: relative;
+    z-index: 2;
+}
+.mission-card {
+    min-height: 244px;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(180px,35%) 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    border: 2px solid var(--cyan);
+    border-radius: 21px;
+    background: linear-gradient(90deg,#041b31d9,#06172bd9),url("../assets/mars-hero.png") center 83%/cover;
+    box-shadow: inset 0 0 20px #00aaff12;
+}
+.mission-card:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(0deg,#00111f7a,transparent 35%);
+}
+.moon-card {
+    border-color: #00baff;
+    background-image: linear-gradient(90deg,#031a30b8,#04182bdc),url("../assets/mars-hero.png");
+}
+.mars-card {
+    border-color: var(--orange);
+    background-image: linear-gradient(90deg,#1d100bc9,#0c101ddc),url("../assets/mars-hero.png");
+}
+.planet-wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+}
+.planet-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 14px #0a6ba655);
+}
+.mars-card .planet-image {
+    filter: drop-shadow(0 0 14px #ff6a2655);
+}
+.mission-copy {
+    position: relative;
+    z-index: 1;
+    align-self: center;
+    min-width: 0;
+    padding-bottom: 38px;
+}
+.mission-copy h2 {
+    margin: 0 0 9px;
+    font-size: clamp(21px,2.1vw,36px);
+    font-weight: 900;
+    letter-spacing: -.04em;
+    white-space: nowrap;
+}
+.moon-card .mission-copy h2 span {
+    color: var(--cyan);
+}
+.mars-card .mission-copy h2 span {
+    color: var(--orange);
+}
+.mission-copy p {
+    color: #d0e2f5;
+    margin: 0;
+    line-height: 1.48;
+    font-size: clamp(13px,1.1vw,17px);
+}
+.mission-meta {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    position: absolute;
+    top: calc(100% + 17px);
+    left: 0;
+}
+.mission-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+.mission-meta svg {
+    width: 23px;
+    height: 23px;
+    color: var(--cyan);
+    fill: var(--cyan);
+    stroke: #00101f;
+}
+.mars-card .mission-meta span,.mars-card .mission-meta svg {
+    color: #ff9d32;
+}
+.mission-select {
+    position: relative;
+    z-index: 1;
+    align-self: end;
+    min-height: 48px;
+    padding: 0 14px;
+    gap: 8px;
+    font-size: 12px;
+    border-radius: 17px;
+    border-color: var(--cyan);
+    background: #031427e8;
+    margin-bottom: 17px;
+}
+.mission-select svg {
+    width: 18px;
+    height: 18px;
+    color: var(--cyan);
+}
+.mars-card .mission-select {
+    border-color: var(--orange);
+}
+.mars-card .mission-select svg {
+    color: var(--orange);
+}
+.mission-select:hover {
+    box-shadow: 0 0 17px #00bfff65;
+}
+.mars-card .mission-select:hover {
+    box-shadow: 0 0 17px #ff873c65;
+}
+.below-fold {
+    padding: 80px 5% 76px;
+    text-align: center;
+    background: radial-gradient(ellipse at top,#06325270,transparent 65%);
+    border-top: 1px solid #073d5b;
+}
+.section-kicker {
+    color: var(--cyan);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .22em;
+}
+.below-fold h2 {
+    font-size: clamp(28px,3vw,44px);
+    margin: 12px 0;
+}
+.below-fold>p {
+    color: var(--muted);
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+.feature-row {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
+    margin-top: 35px;
+    text-align: left;
+}
+.feature-row article {
+    padding: 25px;
+    border: 1px solid #0a5474;
+    border-radius: 15px;
+    background: #03182a;
+}
+.feature-row article>svg {
+    color: var(--cyan);
+    width: 30px;
+    height: 30px;
+}
+.feature-row h3 {
+    margin: 14px 0 8px;
+}
+.feature-row p,.placeholder-section p {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+.placeholder-section {
+    padding: 30px 5%;
+    border-top: 1px solid #10354b;
+    background: #020d1b;
+}
+.placeholder-section h2 {
+    margin: 0 0 8px;
+}
+footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 4%;
+    color: #8aa9c6;
+    border-top: 1px solid #10354b;
+    font-size: 11px;
+    letter-spacing: .12em;
+}
+.toast {
+    position: fixed;
+    z-index: 20;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%,20px);
+    opacity: 0;
+    pointer-events: none;
+    background: #071c30;
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 22px #00bfff30;
+    color: white;
+    padding: 13px 18px;
+    border-radius: 10px;
+    max-width: min(90vw,520px);
+    font-size: 14px;
+    transition: .25s;
+}
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%,0);
+}
+@media (max-width:1150px) {
+    .site-header {
+        gap: 14px;
+    }
+    .brand {
+        width: 270px;
+        min-width: 200px;
+    }
+    .main-nav {
+        gap: 24px;
+    }
+    .mission-card {
+        grid-template-columns: minmax(120px,30%) 1fr;
+        min-height: 230px;
+        padding: 14px;
+    }
+    .mission-copy {
+        padding-bottom: 42px;
+    }
+    .mission-select {
+        position: absolute;
+        right: 14px;
+        bottom: 10px;
+        margin: 0;
+    }
+    .mission-meta {
+        gap: 12px;
+    }
+}
+@media (max-width:800px) {
+    .page-frame {
+        border-radius: 17px;
+        border-width: 2px;
+    }
+    .site-header {
+        height: 70px;
+        padding: 7px 14px;
+    }
+    .brand {
+        width: min(70%,300px);
+        min-width: 0;
+        margin-right: auto;
+    }
+    .brand img {
+        max-height: 55px;
+    }
+    .mobile-menu {
+        display: grid;
+        place-items: center;
+    }
+    .profile-wrap {
+        margin-left: 0;
+    }
+    .profile-button {
+        width: 41px;
+        height: 41px;
+    }
+    .main-nav {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 8px;
+        right: 8px;
+        height: auto;
+        padding: 10px;
+        border: 1px solid #00bfff;
+        border-radius: 12px;
+        background: #031326f7;
+        box-shadow: 0 12px 25px #000a;
+        flex-direction: column;
+        gap: 0;
+    }
+    .main-nav.open {
+        display: flex;
+    }
+    .nav-link {
+        padding: 13px 12px;
+    }
+    .nav-link.active:after {
+        left: 12px;
+        right: auto;
+        width: 35px;
+        bottom: 4px;
+        height: 2px;
+    }
+    .hero {
+        min-height: 510px;
+        height: auto;
+    }
+    .hero-backdrop {
+        background-image: linear-gradient(90deg,#020b18f5 0%,#020b18df 45%,#020b1870 100%),url("../assets/mars-hero.png");
+        background-position: 58% center;
+    }
+    .hero-content {
+        padding: 42px 6% 40px;
+    }
+    .hero h1 {
+        font-size: clamp(43px,8vw,65px);
+    }
+    .hero p {
+        max-width: 520px;
+    }
+    .mission-grid {
+        grid-template-columns: 1fr;
+        padding: 0 4% 22px;
+        gap: 14px;
+        margin-top: 0;
+    }
+    .mission-card {
+        grid-template-columns: minmax(135px,32%) 1fr auto;
+        min-height: 215px;
+        padding: 12px 16px;
+    }
+    .mission-copy {
+        padding-bottom: 34px;
+    }
+    .mission-copy h2 {
+        font-size: clamp(21px,4vw,30px);
+    }
+    .mission-select {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        align-self: end;
+        margin: 0 0 12px;
+    }
+    .mission-meta {
+        top: calc(100% + 10px);
+        gap: 12px;
+    }
+    .mission-meta span {
+        font-size: 11px;
+    }
+    .feature-row {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width:540px) {
+    :root {
+        --frame-gap: 5px;
+    }
+    .page-frame {
+        border-radius: 13px;
+    }
+    .site-header {
+        gap: 8px;
+    }
+    .brand {
+        width: 62%;
+    }
+    .brand img {
+        max-height: 48px;
+    }
+    .mobile-menu {
+        padding: 6px;
+    }
+    .profile-button {
+        width: 36px;
+        height: 36px;
+    }
+    .profile-button svg {
+        width: 21px;
+        height: 21px;
+    }
+    .hero {
+        min-height: 495px;
+    }
+    .hero-content {
+        padding: 35px 6% 32px;
+    }
+    .eyebrow-line {
+        margin-bottom: 17px;
+    }
+    .hero h1 {
+        font-size: clamp(39px,11vw,54px);
+    }
+    .hero h2 {
+        font-size: 24px;
+    }
+    .hero p {
+        font-size: 14px;
+    }
+    .desktop-break {
+        display: none;
+    }
+    .hero-actions {
+        gap: 11px;
+        margin-top: 23px;
+    }
+    .button-primary,.button-outline {
+        min-width: 0;
+        width: 100%;
+        min-height: 53px;
+    }
+    .button {
+        font-size: 13px;
+    }
+    .mission-grid {
+        padding: 0 3% 18px;
+    }
+    .mission-card {
+        grid-template-columns: 100px minmax(0,1fr);
+        min-height: 205px;
+        gap: 12px;
+        padding: 13px;
+    }
+    .planet-wrap {
+        align-self: start;
+        margin-top: 9px;
+    }
+    .mission-copy {
+        align-self: start;
+        padding: 10px 0 48px;
+    }
+    .mission-copy h2 {
+        white-space: normal;
+        font-size: 22px;
+        line-height: 1.1;
+    }
+    .mission-copy p {
+        font-size: 12px;
+    }
+    .mission-meta {
+        top: auto;
+        bottom: 48px;
+        left: 0;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .mission-meta svg {
+        width: 18px;
+        height: 18px;
+    }
+    .mission-meta span {
+        font-size: 10px;
+        gap: 4px;
+    }
+    .mission-select {
+        position: absolute;
+        right: 12px;
+        bottom: 9px;
+        min-height: 36px;
+        padding: 0 9px;
+        font-size: 9px;
+        border-radius: 11px;
+    }
+    .mission-select svg {
+        width: 14px;
+        height: 14px;
+    }
+    .below-fold {
+        padding: 55px 6%;
+    }
+    .below-fold h2 {
+        font-size: 29px;
+    }
+    footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+/*=== Single continuous hero: background continues behind Moon and Mars ===*/
+.hero {
+    height: auto;
+    min-height: 0;
+    padding-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+}
+.hero-backdrop {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg, #020b18 0%, #020b18ed 24%, #020b1855 52%, #020b1808 100%), url("../assets/mars-hero.png");
+    background-size: cover;
+    background-position: center center;
+    opacity: 1;
+}
+.hero-content {
+    flex: 0 0 auto;
+    padding: clamp(38px, 4vw, 66px) 4.2% 24px;
+    max-width: 790px;
+}
+.mission-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 8px 2.2% 0;
+    margin-top: auto;
+}
+.mission-card {
+    min-height: 215px;
+    display: grid;
+    grid-template-columns: minmax(115px, 31%) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 16px;
+    border: 0;
+    border-radius: 0;
+    background: transparent !important;
+    box-shadow: none;
+}
+.mission-card::before {
+    display: none;
+}
+.planet-wrap {
+    max-width: 220px;
+}
+.mission-copy {
+    align-self: center;
+    padding-bottom: 0;
+}
+.mission-copy h2 {
+    font-size: clamp(20px, 2vw, 32px);
+}
+.mission-copy p {
+    font-size: clamp(12px, 1vw, 16px);
+}
+.mission-meta {
+    gap: 14px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+.mission-select {
+    align-self: end;
+    margin-bottom: 10px;
+}
+.moon-card {
+    border-right: 1px solid #00bfff50;
+}
+.mars-card {
+    border-left: 1px solid #ff873c50;
+}
+@media (max-width: 1000px) {
+    .mission-card {
+        grid-template-columns: minmax(100px, 28%) minmax(0,1fr);
+        min-height: 195px;
+    }
+    .mission-select {
+        position: absolute;
+        right: 18px;
+        bottom: 10px;
+        margin: 0;
+    }
+    .mission-copy {
+        padding-bottom: 40px;
+    }
+    .mission-meta {
+        position: absolute;
+        bottom: 15px;
+        left: calc(28% + 28px);
+        margin: 0;
+    }
+}
+@media (max-width: 800px) {
+    .hero {
+        padding-bottom: 18px;
+    }
+    .hero-backdrop {
+        background-image: linear-gradient(90deg, #020b18f5 0%, #020b18df 48%, #020b1870 100%), url("../assets/mars-hero.png");
+        background-position: 58% center;
+    }
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+        padding: 0 4%;
+    }
+    .mission-card {
+        grid-template-columns: 125px minmax(0,1fr);
+        min-height: 175px;
+        padding: 12px 8px;
+        border: 0;
+        border-top: 1px solid #00bfff65;
+    }
+    .mars-card {
+        border-top-color: #ff873c65;
+    }
+    .mission-copy {
+        padding-bottom: 38px;
+    }
+    .mission-copy h2 {
+        font-size: clamp(20px, 4vw, 28px);
+    }
+    .mission-meta {
+        left: 140px;
+        bottom: 12px;
+    }
+}
+@media (max-width: 540px) {
+    .hero-content {
+        padding: 34px 6% 26px;
+    }
+    .hero h1 {
+        font-size: clamp(34px, 9.5vw, 43px);
+    }
+    .hero-actions {
+        margin-top: 23px;
+        gap: 10px;
+    }
+    .mission-grid {
+        padding: 0 4%;
+    }
+    .mission-card {
+        grid-template-columns: 92px minmax(0,1fr);
+        min-height: 160px;
+        gap: 12px;
+    }
+    .mission-copy {
+        padding: 4px 0 42px;
+    }
+    .mission-copy h2 {
+        font-size: 19px;
+        white-space: normal;
+    }
+    .mission-copy p {
+        font-size: 11px;
+    }
+    .mission-meta {
+        left: 104px;
+        bottom: 10px;
+        gap: 9px;
+    }
+    .mission-meta span {
+        font-size: 9px;
+    }
+    .mission-select {
+        right: 7px;
+        bottom: 8px;
+        min-height: 32px;
+        padding: 0 8px;
+        font-size: 9px;
+    }
+}
+/*Final visual refinement: remove the outer frame, keep mission panels transparent,
+   and make the Moon/Mars outlines clearly visible at every screen size.*/
+.page-frame {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.mission-card {
+    background: transparent !important;
+    border: 2px solid var(--cyan) !important;
+    border-radius: 18px;
+    box-shadow: 0 0 12px #00bfff35, inset 0 0 16px #00bfff0b;
+}
+.mission-card::before {
+    display: none;
+}
+.moon-card {
+    border-color: #00c8ff !important;
+    box-shadow: 0 0 15px #00bfff40, inset 0 0 16px #00bfff0c;
+}
+.mars-card {
+    border-color: #ff873c !important;
+    box-shadow: 0 0 15px #ff873c40, inset 0 0 16px #ff873c0c;
+}
+@media (max-width: 800px) {
+    .mission-card {
+        border: 2px solid var(--cyan) !important;
+        border-radius: 16px;
+    }
+    .moon-card {
+        border-color: #00c8ff !important;
+    }
+    .mars-card {
+        border-color: #ff873c !important;
+    }
+}
+.profile-menu a {
+    display: block;
+    padding: 10px;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 13px;
+}
+.profile-menu a:hover {
+    background: #0b2b46;
+    color: var(--cyan);
+}
+/*Landing page recreation based on the supplied ASTRAQUEST references*/
+.home-page {
+    background: #06101e;
+    color: #f4f7ff;
+    min-height: 100vh;
+}
+.home-page .site-header {
+    height: 58px;
+    padding: 4px 3.7% 4px 8px;
+    gap: 20px;
+    background: #0b1729;
+    border-bottom: 1px solid #14243b;
+}
+.home-page .brand {
+    width: 220px;
+    min-width: 180px;
+}
+.home-page .brand img {
+    max-height: 48px;
+}
+.home-page .main-nav {
+    gap: clamp(24px,4.2vw,64px);
+}
+.home-page .nav-link {
+    font-size: 11px;
+    font-weight: 500;
+    color: #d2d9e6;
+}
+.home-page .nav-link:hover,.home-page .nav-link.active {
+    color: #fff;
+}
+.home-page .nav-link.active:after {
+    display: none;
+}
+.auth-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 8px;
+}
+.auth-nav a {
+    font-size: 11px;
+    color: #e8efff;
+    text-decoration: none;
+    border: 1px solid #2874ce;
+    border-radius: 7px;
+    padding: 4px 8px;
+    white-space: nowrap;
+}
+.auth-nav a:hover {
+    background: #167ee8;
+}
+.home-page .mobile-menu {
+    color: #00a5ff;
+}
+.landing-hero {
+    height: 430px;
+    position: relative;
+    overflow: hidden;
+    background: #06111f;
+}
+.landing-art {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg,#06111f 0%,#06111ff5 22%,#06111f9c 42%,#06111f12 72%),url("../assets/mars-hero.png");
+    background-size: cover;
+    background-position: center 54%;
+}
+.landing-copy {
+    position: relative;
+    z-index: 1;
+    padding: 56px 4.4%;
+    max-width: 590px;
+}
+.landing-copy h1 {
+    margin: 0;
+    font-size: clamp(38px,4.4vw,49px);
+    line-height: 1.28;
+    letter-spacing: -.035em;
+    font-weight: 800;
+}
+.landing-copy h1 span {
+    color: #079cf5;
+}
+.landing-copy h2 {
+    font-size: 18px;
+    margin: 14px 0 18px;
+    font-weight: 700;
+}
+.landing-copy p {
+    font-size: 15px;
+    color: #d1d9e5;
+    margin: 0;
+}
+.landing-actions {
+    display: flex;
+    gap: 20px;
+    margin: 40px 0 0 6px;
+}
+.cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 41px;
+    padding: 0 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.cta svg {
+    width: 15px;
+    height: 15px;
+}
+.cta-primary {
+    background: #078ff0;
+    border: 1px solid #149fff;
+}
+.cta-primary:hover {
+    background: #1677dc;
+}
+.cta-outline {
+    background: #061323c9;
+    border: 1px solid #078ee5;
+    min-width: 140px;
+}
+.cta-outline:hover {
+    background: #0c2b48;
+}
+.landing-options {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(220px,1.08fr);
+    gap: 26px;
+    padding: 24px 6.1% 25px;
+    background: #06111f;
+    align-items: stretch;
+}
+.destination {
+    min-height: 126px;
+    display: grid;
+    grid-template-columns: 100px minmax(0,1fr);
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding: 9px 13px;
+    border: 1px solid #007bc4;
+    border-radius: 17px;
+    background: #0b192c;
+}
+.destination>img {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px #1a7bb344);
+}
+.mars-destination {
+    border-color: #a64c2a;
+}
+.destination-info {
+    align-self: center;
+    min-width: 0;
+    padding-bottom: 14px;
+}
+.destination-info h2 {
+    font-size: 12px;
+    margin: 0 0 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.destination-info p {
+    font-size: 10px;
+    line-height: 1.45;
+    color: #c6d0df;
+    margin: 0 0 10px;
+}
+.difficulty {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: #d2dce9;
+}
+.difficulty i {
+    width: 13px;
+    height: 13px;
+    background: #079eff;
+    border-radius: 50%;
+    display: inline-block;
+}
+.mars-destination .difficulty i {
+    background: #ff8046;
+}
+.explore-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid #1870c2;
+    background: #071426;
+    color: #f2f6ff;
+    border-radius: 8px;
+    font-size: 9px;
+    padding: 4px 6px;
+}
+.mars-destination .explore-button {
+    border-color: #a8542e;
+}
+.explore-button:hover {
+    background: #12314e;
+}
+.nasa-callout {
+    border-left: 1px solid #008bd7;
+    padding: 8px 0 8px 33px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
+}
+.nasa-callout h3 {
+    font-size: 15px;
+    line-height: 1.3;
+    margin: 0;
+    font-weight: 700;
+}
+.nasa-callout h3 span {
+    color: #009df6;
+}
+.nasa-callout .cta {
+    min-height: 31px;
+    padding: 0 12px;
+    font-size: 11px;
+}
+.how-section {
+    margin: 0 6.1%;
+    border-top: 1px solid #0876b4;
+    padding: 12px 0 24px;
+    display: grid;
+    grid-template-columns: 34% 66%;
+    align-items: center;
+    gap: 10px;
+}
+.how-intro>span {
+    font-size: 11px;
+    font-weight: 700;
+    color: #00a6ff;
+}
+.how-intro h2 {
+    font-size: 18px;
+    margin: 6px 0 6px;
+}
+.how-intro p {
+    font-size: 10px;
+    line-height: 1.35;
+    color: #c4d0e0;
+    margin: 0;
+}
+.journey-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.journey-steps article {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+}
+.step-icon {
+    width: 49px;
+    height: 49px;
+    border: 2px solid #008fe8;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    color: #00b7ff;
+    box-shadow: 0 0 0 1px #0074ba33;
+}
+.step-icon svg {
+    width: 27px;
+    height: 27px;
+}
+.journey-steps b {
+    font-size: 9px;
+    color: #00aaff;
+}
+.journey-steps p {
+    font-size: 8px;
+    line-height: 1.4;
+    color: #c4d0e0;
+    margin: 5px 0 0;
+}
+.step-arrow {
+    font-size: 22px;
+    color: #078fe9;
+    font-weight: 700;
+}
+.home-page .toast {
+    bottom: 20px;
+}
+@media (min-width:1400px) {
+    .landing-hero {
+        height: 470px;
+    }
+    .landing-copy {
+        padding-top: 64px;
+    }
+    .landing-options {
+        padding-top: 25px;
+        padding-bottom: 28px;
+    }
+    .destination {
+        min-height: 140px;
+    }
+}
+@media (max-width:900px) {
+    .home-page .site-header {
+        padding-right: 14px;
+    }
+    .home-page .brand {
+        width: 190px;
+        min-width: 155px;
+    }
+    .home-page .main-nav {
+        gap: 18px;
+    }
+    .landing-hero {
+        height: 410px;
+    }
+    .landing-copy {
+        padding-top: 48px;
+    }
+    .landing-options {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        padding: 18px 4%;
+    }
+    .nasa-callout {
+        grid-column: 1/-1;
+        border-left: 0;
+        border-top: 1px solid #008bd7;
+        padding: 16px 0 0;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .how-section {
+        margin: 0 4%;
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+    .journey-steps {
+        justify-content: flex-start;
+        gap: 12px;
+    }
+    .step-arrow {
+        margin: 0 3px;
+    }
+}
+@media (max-width:620px) {
+    .home-page .site-header {
+        height: 58px;
+        gap: 8px;
+    }
+    .home-page .brand {
+        width: min(58%,220px);
+        min-width: 0;
+    }
+    .home-page .brand img {
+        max-height: 43px;
+    }
+    .home-page .mobile-menu {
+        display: grid;
+        place-items: center;
+    }
+    .home-page .main-nav {
+        display: none;
+        position: absolute;
+        top: 56px;
+        left: 8px;
+        right: 8px;
+        height: auto;
+        padding: 8px;
+        border: 1px solid #078ee5;
+        border-radius: 10px;
+        background: #061426f7;
+        flex-direction: column;
+        gap: 0;
+    }
+    .home-page .main-nav.open {
+        display: flex;
+    }
+    .home-page .nav-link {
+        padding: 11px;
+    }
+    .auth-nav {
+        gap: 5px;
+        margin-left: 0;
+    }
+    .auth-nav a {
+        font-size: 10px;
+        padding: 4px 6px;
+    }
+    .landing-hero {
+        height: 420px;
+    }
+    .landing-art {
+        background-image: linear-gradient(90deg,#06111ff5 0%,#06111fdc 46%,#06111f70 100%),url("../assets/mars-hero.png");
+        background-position: 58% center;
+    }
+    .landing-copy {
+        padding: 40px 6%;
+    }
+    .landing-copy h1 {
+        font-size: clamp(34px,9vw,44px);
+    }
+    .landing-copy h2 {
+        font-size: 17px;
+    }
+    .landing-copy p {
+        font-size: 13px;
+        max-width: 300px;
+        line-height: 1.5;
+    }
+    .landing-actions {
+        margin: 27px 0 0;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    .cta {
+        min-height: 38px;
+        font-size: 10px;
+    }
+    .landing-options {
+        grid-template-columns: 1fr;
+        padding: 14px 5%;
+        gap: 12px;
+    }
+    .destination {
+        min-height: 120px;
+        grid-template-columns: 94px minmax(0,1fr);
+    }
+    .destination>img {
+        width: 88px;
+        height: 88px;
+    }
+    .nasa-callout {
+        grid-column: auto;
+        gap: 12px;
+    }
+    .nasa-callout h3 {
+        font-size: 13px;
+    }
+    .how-section {
+        padding-top: 14px;
+    }
+    .journey-steps {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+    .step-arrow {
+        display: none;
+    }
+    .journey-steps article {
+        gap: 8px;
+    }
+    .step-icon {
+        width: 43px;
+        height: 43px;
+    }
+    .step-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+
+/* =====================================================
+   ASTRAQUEST SHARED HEADER — consistent on every page
+===================================================== */
+.site-header,
+.home-page .site-header,
+.hangar-page .site-header,
+.mission-selection-page .site-header,
+.store-page .site-header,
+.auth-page .site-header,
+.nasa-data-page .site-header,
+.topic-page .site-header {
+  min-height: 58px;
+  height: 58px;
+  padding: 4px 3.7% 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #020d1c;
+  border-bottom: 1px solid #087eae;
+  position: relative;
+  z-index: 100;
+}
+.site-header .brand,
+.home-page .site-header .brand,
+.hangar-page .site-header .brand,
+.mission-selection-page .site-header .brand,
+.store-page .site-header .brand,
+.auth-page .site-header .brand,
+.nasa-data-page .site-header .brand,
+.topic-page .site-header .brand {
+  display: flex;
+  align-items: center;
+  width: 220px;
+  min-width: 180px;
+  height: 100%;
+}
+.site-header .brand img,
+.home-page .site-header .brand img,
+.hangar-page .site-header .brand img,
+.mission-selection-page .site-header .brand img,
+.store-page .site-header .brand img,
+.auth-page .site-header .brand img,
+.nasa-data-page .site-header .brand img,
+.topic-page .site-header .brand img {
+  width: 100%;
+  max-height: 48px;
+  object-fit: contain;
+  object-position: left center;
+}
+.site-header .main-nav,
+.home-page .site-header .main-nav,
+.hangar-page .site-header .main-nav,
+.mission-selection-page .site-header .main-nav,
+.store-page .site-header .main-nav,
+.auth-page .site-header .main-nav,
+.nasa-data-page .site-header .main-nav,
+.topic-page .site-header .main-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(18px, 4.2vw, 64px);
+  margin-left: auto;
+  height: 100%;
+}
+.site-header .nav-link,
+.home-page .site-header .nav-link,
+.hangar-page .site-header .nav-link,
+.mission-selection-page .site-header .nav-link,
+.store-page .site-header .nav-link,
+.auth-page .site-header .nav-link,
+.nasa-data-page .site-header .nav-link,
+.topic-page .site-header .nav-link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: #d2d9e6;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color .2s ease;
+}
+.site-header .nav-link:hover,
+.site-header .nav-link.active,
+.home-page .site-header .nav-link:hover,
+.home-page .site-header .nav-link.active,
+.hangar-page .site-header .nav-link.active,
+.mission-selection-page .site-header .nav-link.active,
+.store-page .site-header .nav-link.active,
+.auth-page .site-header .nav-link.active,
+.nasa-data-page .site-header .nav-link.active,
+.topic-page .site-header .nav-link.active { color: #00c8ff; }
+.site-header .nav-link.active::after,
+.home-page .site-header .nav-link.active::after,
+.hangar-page .site-header .nav-link.active::after,
+.mission-selection-page .site-header .nav-link.active::after,
+.store-page .site-header .nav-link.active::after,
+.auth-page .site-header .nav-link.active::after,
+.nasa-data-page .site-header .nav-link.active::after,
+.topic-page .site-header .nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 3px;
+  background: #00c8ff;
+  box-shadow: 0 0 10px #00c8ff80;
+}
+.site-header .auth-nav,
+.home-page .site-header .auth-nav,
+.hangar-page .site-header .auth-nav,
+.mission-selection-page .site-header .auth-nav,
+.store-page .site-header .auth-nav,
+.auth-page .site-header .auth-nav,
+.nasa-data-page .site-header .auth-nav,
+.topic-page .site-header .auth-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 8px;
+}
+.site-header .auth-nav a,
+.home-page .site-header .auth-nav a,
+.hangar-page .site-header .auth-nav a,
+.mission-selection-page .site-header .auth-nav a,
+.store-page .site-header .auth-nav a,
+.auth-page .site-header .auth-nav a,
+.nasa-data-page .site-header .auth-nav a,
+.topic-page .site-header .auth-nav a {
+  font-size: 11px;
+  color: #e8efff;
+  text-decoration: none;
+  border: 1px solid #2874ce;
+  border-radius: 7px;
+  padding: 4px 8px;
+  white-space: nowrap;
+}
+.site-header .auth-nav a:hover { background: #167ee8; }
+.site-header .mobile-menu { display: none; }
+@media (max-width: 900px) {
+  .site-header,
+  .home-page .site-header,
+  .hangar-page .site-header,
+  .mission-selection-page .site-header,
+  .store-page .site-header,
+  .auth-page .site-header,
+  .nasa-data-page .site-header,
+  .topic-page .site-header { gap: 12px; padding-right: 14px; }
+  .site-header .brand,
+  .home-page .site-header .brand,
+  .hangar-page .site-header .brand,
+  .mission-selection-page .site-header .brand,
+  .store-page .site-header .brand,
+  .auth-page .site-header .brand,
+  .nasa-data-page .site-header .brand,
+  .topic-page .site-header .brand { width: 190px; min-width: 150px; }
+  .site-header .main-nav,
+  .home-page .site-header .main-nav,
+  .hangar-page .site-header .main-nav,
+  .mission-selection-page .site-header .main-nav,
+  .store-page .site-header .main-nav,
+  .auth-page .site-header .main-nav,
+  .nasa-data-page .site-header .main-nav,
+  .topic-page .site-header .main-nav { gap: 16px; }
+}
+@media (max-width: 700px) {
+  .site-header,
+  .home-page .site-header,
+  .hangar-page .site-header,
+  .mission-selection-page .site-header,
+  .store-page .site-header,
+  .auth-page .site-header,
+  .nasa-data-page .site-header,
+  .topic-page .site-header { height: 60px; min-height: 60px; padding: 5px 12px; gap: 10px; }
+  .site-header .brand,
+  .home-page .site-header .brand,
+  .hangar-page .site-header .brand,
+  .mission-selection-page .site-header .brand,
+  .store-page .site-header .brand,
+  .auth-page .site-header .brand,
+  .nasa-data-page .site-header .brand,
+  .topic-page .site-header .brand { width: 180px; min-width: 0; flex: 1 1 auto; }
+  .site-header .brand img,
+  .home-page .site-header .brand img,
+  .hangar-page .site-header .brand img,
+  .mission-selection-page .site-header .brand img,
+  .store-page .site-header .brand img,
+  .auth-page .site-header .brand img,
+  .nasa-data-page .site-header .brand img,
+  .topic-page .site-header .brand img { max-height: 44px; }
+  .site-header .mobile-menu,
+  .home-page .site-header .mobile-menu,
+  .hangar-page .site-header .mobile-menu,
+  .mission-selection-page .site-header .mobile-menu,
+  .store-page .site-header .mobile-menu,
+  .auth-page .site-header .mobile-menu,
+  .nasa-data-page .site-header .mobile-menu,
+  .topic-page .site-header .mobile-menu { display: grid; place-items: center; order: 3; padding: 7px; color: #00c8ff; border: 1px solid #00bfff70; border-radius: 8px; background: transparent; }
+  .site-header .main-nav,
+  .home-page .site-header .main-nav,
+  .hangar-page .site-header .main-nav,
+  .mission-selection-page .site-header .main-nav,
+  .store-page .site-header .main-nav,
+  .auth-page .site-header .main-nav,
+  .nasa-data-page .site-header .main-nav,
+  .topic-page .site-header .main-nav { display: none; position: absolute; top: 59px; left: 0; right: 0; height: auto; margin: 0; padding: 10px 14px 14px; flex-direction: column; align-items: stretch; gap: 0; background: #020d1c; border-bottom: 1px solid #087eae; box-shadow: 0 12px 20px #0008; }
+  .site-header .main-nav.open,
+  .home-page .site-header .main-nav.open,
+  .hangar-page .site-header .main-nav.open,
+  .mission-selection-page .site-header .main-nav.open,
+  .store-page .site-header .main-nav.open,
+  .auth-page .site-header .main-nav.open,
+  .nasa-data-page .site-header .main-nav.open,
+  .topic-page .site-header .main-nav.open { display: flex; }
+  .site-header .nav-link,
+  .home-page .site-header .nav-link,
+  .hangar-page .site-header .nav-link,
+  .mission-selection-page .site-header .nav-link,
+  .store-page .site-header .nav-link,
+  .auth-page .site-header .nav-link,
+  .nasa-data-page .site-header .nav-link,
+  .topic-page .site-header .nav-link { min-height: 42px; font-size: 13px; }
+  .site-header .nav-link.active::after,
+  .home-page .site-header .nav-link.active::after,
+  .hangar-page .site-header .nav-link.active::after,
+  .mission-selection-page .site-header .nav-link.active::after,
+  .store-page .site-header .nav-link.active::after,
+  .auth-page .site-header .nav-link.active::after,
+  .nasa-data-page .site-header .nav-link.active::after,
+  .topic-page .site-header .nav-link.active::after { display: none; }
+  .site-header .auth-nav,
+  .home-page .site-header .auth-nav,
+  .hangar-page .site-header .auth-nav,
+  .mission-selection-page .site-header .auth-nav,
+  .store-page .site-header .auth-nav,
+  .auth-page .site-header .auth-nav,
+  .nasa-data-page .site-header .auth-nav,
+  .topic-page .site-header .auth-nav { margin-left: auto; gap: 5px; }
+  .site-header .auth-nav a,
+  .home-page .site-header .auth-nav a,
+  .hangar-page .site-header .auth-nav a,
+  .mission-selection-page .site-header .auth-nav a,
+  .store-page .site-header .auth-nav a,
+  .auth-page .site-header .auth-nav a,
+  .nasa-data-page .site-header .auth-nav a,
+  .topic-page .site-header .auth-nav a { padding: 5px 6px; font-size: 10px; }
+}

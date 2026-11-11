@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#031326"><title>Allocate Resources | ASTRAQUEST</title>
+  <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/allocate-resources.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/shared-header.css">
+</head>
+<body class="allocate-resources-page">
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="ASTRAQUEST home"><img src="assets/astraquest-logo.png" alt="ASTRAQUEST — Junior Astronaut Mission Trainer"></a>
+  <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+  <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+    <a class="nav-link" href="index.html">Home</a><a class="nav-link" href="tutorial.html">How it works</a><a class="nav-link" href="index.html#learn">Levels</a><a class="nav-link" href="nasa-data.html">NASA Data</a><a class="nav-link" href="store.html">Store</a>
+  </nav>
+  <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+</header>
+<main class="resource-main">
+  <div class="resource-heading"><h1>ALLOCATE <span>RESOURCES</span></h1><div class="heading-rule"><i data-lucide="rocket"></i></div></div>
+  <section class="budget-bar" aria-label="Mission resource budget"><div class="budget-label"><i data-lucide="boxes"></i><strong>MISSION RESOURCE BUDGET</strong></div><strong class="budget-total">TOTAL: <span id="budgetTotal">1000</span> UNITS</strong></section>
+  <section class="resource-list" aria-label="Allocate mission resources">
+    <article class="resource-row" data-resource="food"><div class="resource-icon"><i data-lucide="utensils"></i></div><div class="resource-description"><h2>FOOD</h2><p>Sustains crew health<br>and performance.</p></div><div class="resource-control"><input class="resource-slider" aria-label="Food units slider" type="range" min="0" max="1000" step="25" value="250"><div class="range-labels"><span>0</span><span>1000</span></div></div><label class="unit-input"><input class="resource-number" aria-label="Food units" type="number" min="0" max="1000" step="25" value="250"><span>UNITS</span></label></article>
+    <article class="resource-row" data-resource="shielding"><div class="resource-icon"><i data-lucide="shield-check"></i></div><div class="resource-description"><h2>RADIATION SHIELDING</h2><p>Protects crew from<br>space radiation.</p></div><div class="resource-control"><input class="resource-slider" aria-label="Radiation shielding units slider" type="range" min="0" max="1000" step="25" value="250"><div class="range-labels"><span>0</span><span>1000</span></div></div><label class="unit-input"><input class="resource-number" aria-label="Radiation shielding units" type="number" min="0" max="1000" step="25" value="250"><span>UNITS</span></label></article>
+    <article class="resource-row" data-resource="lifeSupport"><div class="resource-icon"><i data-lucide="activity"></i></div><div class="resource-description"><h2>LIFE SUPPORT</h2><p>Provides oxygen, water<br>and environmental control.</p></div><div class="resource-control"><input class="resource-slider" aria-label="Life support units slider" type="range" min="0" max="1000" step="25" value="300"><div class="range-labels"><span>0</span><span>1000</span></div></div><label class="unit-input"><input class="resource-number" aria-label="Life support units" type="number" min="0" max="1000" step="25" value="300"><span>UNITS</span></label></article>
+    <article class="resource-row" data-resource="power"><div class="resource-icon"><i data-lucide="zap"></i></div><div class="resource-description"><h2>POWER</h2><p>Supplies energy for all<br>mission systems.</p></div><div class="resource-control"><input class="resource-slider" aria-label="Power units slider" type="range" min="0" max="1000" step="25" value="200"><div class="range-labels"><span>0</span><span>1000</span></div></div><label class="unit-input"><input class="resource-number" aria-label="Power units" type="number" min="0" max="1000" step="25" value="200"><span>UNITS</span></label></article>
+  </section>
+  <div class="resource-actions"><button class="save-resource" id="saveResources" type="button">SAVE &amp; CONTINUE <i data-lucide="arrow-right"></i></button><button class="reset-resource" id="resetResources" type="button">RESET ALLOCATION</button></div>
+  <div class="resource-footer"><i data-lucide="info"></i><span id="allocationMessage">Total allocation must equal <strong>1000 units</strong> to continue.</span><span class="current-total">Current Total: <strong id="currentTotal">1000 / 1000</strong></span></div>
+</main>
+<script src="js/shared-header.js"></script><script src="js/allocate-resources.js"></script><script>if(window.lucide)lucide.createIcons();</script>
+</body></html>

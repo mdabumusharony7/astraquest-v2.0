@@ -1,0 +1,570 @@
+/* ========================================
+   ASTRAQUEST AUTH PAGES
+   Full-screen Mars hero background
+======================================== */
+
+* {
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --auth-bg: #06101f;
+    --auth-blue: #009cff;
+    --auth-button: #2f80ed;
+    --auth-border: #0868b0;
+    --auth-text: #f4f7fc;
+    --auth-muted: #c3ccda;
+  }
+  
+  html,
+  body {
+    min-height: 100%;
+    margin: 0;
+  }
+  
+  .auth-body {
+    min-height: 100vh;
+    color: var(--auth-text);
+    background: var(--auth-bg);
+    font-family: Inter, Arial, sans-serif;
+  }
+  
+  .auth-shell {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+  
+    /* Shared Mars hero image */
+    background-image:
+      linear-gradient(
+        90deg,
+        rgba(5, 15, 29, 1) 0%,
+        rgba(5, 15, 29, 0.98) 34%,
+        rgba(5, 15, 29, 0.78) 48%,
+        rgba(5, 15, 29, 0.18) 76%,
+        rgba(5, 15, 29, 0.12) 100%
+      ),
+      linear-gradient(
+        0deg,
+        rgba(5, 15, 29, 0.38),
+        transparent 35%
+      ),
+      url("../assets/mars-hero.png");
+  
+    background-position: center, center, center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+
+/* ========================================
+   HEADER — MATCH HOMEPAGE
+======================================== */
+
+.auth-header {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 58px;
+  padding: 5px 24px;
+
+  background: #0b1729;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.auth-brand {
+  display: block;
+  width: 220px;
+  max-width: 55vw;
+  flex-shrink: 0;
+}
+
+.auth-brand img {
+  display: block;
+  width: 100%;
+  height: 46px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Homepage navigation links */
+.auth-header nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.auth-header nav a {
+  color: #c5ccda;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-header nav a:hover {
+  color: #00a3ff;
+}
+
+/* If the header uses a simple Home link */
+.back-home {
+  color: #c5ccda;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-home:hover {
+  color: #00a3ff;
+}
+
+@media (max-width: 700px) {
+  .auth-header {
+    height: 58px;
+    padding: 6px 15px;
+  }
+
+  .auth-brand {
+    width: 180px;
+  }
+
+  .auth-brand img {
+    height: 40px;
+  }
+
+  .auth-header nav {
+    gap: 14px;
+  }
+
+  .auth-header nav a {
+    font-size: 11px;
+  }
+}
+
+  /* ========================================
+     MAIN LAYOUT
+  ======================================== */
+  
+  .auth-main {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 42px clamp(28px, 4.5vw, 64px);
+  }
+  
+  /* The Mars artwork is the page background. */
+  .auth-art {
+    display: none !important;
+  }
+  
+  .auth-panel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  
+  .auth-inner {
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  /* ========================================
+     HEADINGS
+  ======================================== */
+  
+  .kicker {
+    display: inline-block;
+    color: var(--auth-blue);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+  }
+  
+  .auth-inner > .kicker {
+    display: none;
+  }
+  
+  .auth-inner h2 {
+    margin: 0 0 18px;
+    color: #f6f8fc;
+    font-size: clamp(30px, 3.3vw, 39px);
+    font-weight: 750;
+    line-height: 1.25;
+    letter-spacing: -0.035em;
+  }
+  
+  .subtitle {
+    max-width: 340px;
+    margin: 0 0 27px;
+    color: #d0d7e2;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+  
+  /* ========================================
+     LOGIN / SIGNUP TABS
+  ======================================== */
+  
+  .tabs {
+    display: none;
+  }
+  
+  /* ========================================
+     FORM FIELDS
+  ======================================== */
+  
+  .field {
+    margin-bottom: 13px;
+  }
+  
+  .field label {
+    display: block;
+    margin-bottom: 5px;
+    color: #e0e7f0;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .labelrow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .field input:not([type="checkbox"]) {
+    display: block;
+    width: 100%;
+    height: 39px;
+    padding: 0 14px;
+    border: 1px solid var(--auth-border);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(9, 24, 43, 0.94);
+    color: #f5f8ff;
+    font-family: inherit;
+    font-size: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .field input:not([type="checkbox"])::placeholder {
+    color: #008ee8;
+    opacity: 0.95;
+  }
+  
+  .field input:not([type="checkbox"]):focus {
+    border-color: #00aaff;
+    box-shadow: 0 0 0 3px rgba(0, 156, 255, 0.13);
+  }
+  
+  .field small {
+    display: block;
+    min-height: 0;
+    margin-top: 4px;
+    color: #ff9b8e;
+    font-size: 11px;
+  }
+  
+  .field small:empty {
+    display: none;
+  }
+  
+  .passwordrow {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  
+  .passwordrow input {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .passwordrow button {
+    z-index: 1;
+    width: 32px;
+    height: 36px;
+    margin-left: -40px;
+    border: 0;
+    background: transparent;
+    color: #8daec8;
+    cursor: pointer;
+  }
+  
+  .linkbtn {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #008fe8;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  
+  .linkbtn:hover {
+    color: #4bc3ff;
+  }
+  
+  /* ========================================
+     CHECKBOXES
+  ======================================== */
+  
+  .checkrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 7px 0 16px;
+    color: #c4d1e0;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  
+  .checkrow input {
+    accent-color: var(--auth-blue);
+  }
+  
+  .checkrow a {
+    color: var(--auth-blue);
+    text-decoration: none;
+  }
+  
+  /* ========================================
+     PRIMARY BUTTON AND MESSAGES
+  ======================================== */
+  
+  .submit {
+    display: block;
+    width: 100%;
+    height: 42px;
+    margin-top: 25px;
+    border: 1px solid #258df7;
+    border-radius: 8px;
+    background: var(--auth-button);
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  
+  .submit:hover {
+    background: #1473df;
+    transform: translateY(-1px);
+  }
+  
+  #message {
+    min-height: 0;
+    margin: 8px 0;
+    color: #ffb17d;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  #message:empty {
+    display: none;
+  }
+  
+  #message.success {
+    color: #75f0c0;
+  }
+  
+  /* ========================================
+     LOGIN / SIGNUP SWITCH
+  ======================================== */
+  
+  .switch {
+    margin: 17px 0;
+    color: #c4d1e0;
+    font-size: 12px;
+    text-align: center;
+  }
+  
+  .switch button {
+    border: 0;
+    background: transparent;
+    color: var(--auth-blue);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  /* ========================================
+     DIVIDER AND DISCLAIMER
+  ======================================== */
+  
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 16px;
+    color: #d0d7e2;
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+  
+  .divider::before,
+  .divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #17446b;
+  }
+  
+  .disclaimer {
+    margin-top: 16px;
+    color: #8298b2;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  
+  /* ========================================
+     FOOTER
+  ======================================== */
+  
+  .auth-footer {
+    position: relative;
+    z-index: 1;
+    display: none;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 14px 30px;
+    border-top: 1px solid rgba(16, 51, 74, 0.6);
+    background: rgba(5, 15, 29, 0.65);
+    color: #8197b0;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  
+  /* ========================================
+     SIGNUP FIELD VISIBILITY
+  ======================================== */
+  
+  #nameField[hidden],
+  #confirmField[hidden],
+  #termsRow[hidden],
+  #rememberRow[hidden] {
+    display: none !important;
+  }
+  
+  #nameField:not([hidden]),
+  #confirmField:not([hidden]) {
+    display: block;
+  }
+  
+  /* ========================================
+     TABLET RESPONSIVE STYLES
+  ======================================== */
+  
+  @media (max-width: 900px) {
+    .auth-shell {
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(5, 15, 29, 0.99) 0%,
+          rgba(5, 15, 29, 0.94) 48%,
+          rgba(5, 15, 29, 0.55) 100%
+        ),
+        linear-gradient(
+          0deg,
+          rgba(5, 15, 29, 0.35),
+          transparent 50%
+        ),
+        url("../assets/mars-hero.png");
+      background-position: center, center, 58% center;
+      background-attachment: scroll;
+    }
+  
+    .auth-main {
+      padding: 38px 30px;
+    }
+  
+    .auth-inner {
+      max-width: 350px;
+    }
+  }
+  
+  /* ========================================
+     MOBILE RESPONSIVE STYLES
+  ======================================== */
+  
+  @media (max-width: 520px) {
+    .auth-shell {
+      background-image:
+        linear-gradient(
+          90deg,
+          rgba(5, 15, 29, 0.95),
+          rgba(5, 15, 29, 0.83)
+        ),
+        url("../assets/mars-hero.png");
+      background-position: center, 63% center;
+      background-size: cover;
+      background-attachment: scroll;
+    }
+  
+    .auth-header {
+      height: 58px;
+      padding: 6px 15px;
+    }
+  
+    .auth-brand {
+      width: 180px;
+    }
+  
+    .auth-brand img {
+      height: 40px;
+    }
+  
+    .back-home {
+      font-size: 11px;
+    }
+  
+    .auth-main {
+      align-items: flex-start;
+      padding: 45px 22px 35px;
+    }
+  
+    .auth-inner {
+      max-width: 100%;
+    }
+  
+    .auth-inner h2 {
+      font-size: 30px;
+    }
+  
+    .subtitle {
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+  
+    .field {
+      margin-bottom: 14px;
+    }
+  
+    .field input:not([type="checkbox"]) {
+      height: 42px;
+    }
+  
+    .submit {
+      height: 44px;
+    }
+  
+    .auth-footer {
+      display: none;
+    }
+  }
+  

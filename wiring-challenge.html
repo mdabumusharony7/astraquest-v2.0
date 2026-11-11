@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#031326"><title>Wiring Challenge | ASTRAQUEST</title>
+  <link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/wiring-challenge.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/shared-header.css">
+</head>
+<body class="wiring-page">
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="ASTRAQUEST home"><img src="assets/astraquest-logo.png" alt="ASTRAQUEST — Junior Astronaut Mission Trainer"></a>
+  <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+  <nav class="main-nav" id="mainNav" aria-label="Main navigation"><a class="nav-link" href="index.html">Home</a><a class="nav-link" href="tutorial.html">How it works</a><a class="nav-link" href="index.html#learn">Levels</a><a class="nav-link" href="nasa-data.html">NASA Data</a><a class="nav-link" href="store.html">Store</a></nav>
+  <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+</header>
+<main class="wiring-main">
+  <div class="wiring-backdrop" aria-hidden="true"><img src="assets/moon-rocket-1.png" alt=""></div>
+  <a class="wiring-back" href="launch-sequence.html"><i data-lucide="arrow-left"></i><span>Back</span></a>
+  <aside class="mission-rail" aria-label="Mission summary">
+    <div class="rail-title">MISSION: LUNAR EXPLORATION <img src="assets/moon-destination-thumbnail.png" alt="Moon"></div>
+    <div class="rail-stat"><i data-lucide="rocket"></i><span>Rocket<strong id="railRocket">Pioneer-1</strong></span></div>
+    <div class="rail-stat"><i data-lucide="users-round"></i><span>Crew<strong id="railCrew">4 Members</strong></span></div>
+    <div class="rail-stat"><i data-lucide="moon"></i><span>Destination<strong>Moon</strong></span></div>
+    <div class="rail-stat"><i data-lucide="package"></i><span>Resource Units<strong id="railUnits">1000 / 1000</strong></span></div>
+    <img class="rail-landscape" src="assets/moon-destination-thumbnail.png" alt="Lunar landscape">
+  </aside>
+  <section class="wire-panel" aria-labelledby="wireTitle">
+    <div class="wire-stepbar"><strong id="stepText">STEP 2 OF 6</strong><div class="wire-dots" aria-label="Launch progress"><i class="done"></i><i class="current"></i><i></i><i></i><i></i><i></i></div><span>LAUNCH SEQUENCE</span></div>
+    <div class="wire-content">
+      <section class="wire-screen active" id="instructionsScreen">
+        <h1 id="wireTitle">READ THE <span>INSTRUCTIONS</span></h1>
+        <p class="wire-subtitle">Each wire must be connected to its correct matching system to activate the rocket.</p>
+        <div class="guide-layout">
+          <section class="system-guide"><h2>WIRE CONNECTION GUIDE</h2><p class="guide-hint">Connect each source on the left to its matching system on the right.</p>
+            <div class="guide-row red"><i data-lucide="settings"></i><span><b>ENGINE CONTROL</b><small>Controls rocket engines<br>and thrust.</small></span></div>
+            <div class="guide-row blue"><i data-lucide="navigation"></i><span><b>NAVIGATION</b><small>Handles guidance<br>and trajectory.</small></span></div>
+            <div class="guide-row yellow"><i data-lucide="zap"></i><span><b>POWER SYSTEM</b><small>Supplies electrical<br>power to all systems.</small></span></div>
+            <div class="guide-row green"><i data-lucide="heart-pulse"></i><span><b>LIFE SUPPORT</b><small>Provides oxygen, water<br>and environmental control.</small></span></div>
+            <div class="guide-row purple"><i data-lucide="radio-tower"></i><span><b>COMMUNICATION</b><small>Maintains communication<br>with Earth.</small></span></div>
+          </section>
+          <div class="wiring-preview" aria-label="Wire matching preview"><div class="preview-head"><span>POWER SOURCES<br><small>(Connect from here)</small></span><span>ROCKET SYSTEMS<br><small>(Connect to here)</small></span></div>
+            <div class="preview-lines"><div class="preview-wire red"></div><div class="preview-wire blue"></div><div class="preview-wire yellow"></div><div class="preview-wire green"></div><div class="preview-wire purple"></div></div>
+            <div class="preview-nodes left-nodes"><i class="red"></i><i class="blue"></i><i class="yellow"></i><i class="green"></i><i class="purple"></i></div><div class="preview-nodes right-nodes"><i class="red"></i><i class="blue"></i><i class="yellow"></i><i class="green"></i><i class="purple"></i></div>
+          </div>
+        </div>
+        <div class="instruction-footer"><div class="how-to"><i data-lucide="info"></i><div><b>HOW TO PLAY</b><ol><li>Click or drag a wire from the left connector.</li><li>Connect it to the matching system on the right.</li><li>Correct connections glow green.</li><li>Complete all connections to activate the rocket.</li></ol></div></div><div class="progress-card"><span>CONNECTION PROGRESS</span><strong><i></i><b>0 / 5</b></strong><small>CONNECTIONS COMPLETE</small></div><button class="primary-wire" id="startConnecting">START CONNECTING <i data-lucide="arrow-right"></i></button></div>
+      </section>
+      <section class="wire-screen" id="connectScreen" hidden>
+        <h1>CONNECT THE <span>WIRES</span></h1><p class="wire-subtitle">Click and drag each wire from the left to its correct matching system on the right.</p>
+        <div class="connection-board" id="connectionBoard">
+          <svg class="wire-svg" id="wireSvg" aria-label="Wire connections"></svg>
+          <div class="wire-column source-column"><div class="column-head">POWER SOURCES<small>(Drag wires from here)</small></div><div class="wire-rows" id="sourceRows"></div></div>
+          <div class="board-core" aria-hidden="true"><span class="core-label">POWER<br>ROUTING</span><i class="core-light"></i><i class="core-light second"></i><i class="core-light third"></i></div>
+          <div class="wire-column target-column"><div class="column-head">ROCKET SYSTEMS<small>(Drop wires here)</small></div><div class="wire-rows" id="targetRows"></div></div>
+        </div>
+        <div class="connect-footer"><div class="time-card"><i data-lucide="clock-3"></i><span>TIME LEFT<strong id="timeLeft">01:30</strong><em><i id="timeBar"></i></em></span></div><div class="progress-card"><span>CONNECTION PROGRESS</span><strong><i id="connectRing"></i><b id="connectCount">0 / 5</b></strong><small>CONNECTIONS COMPLETE</small></div><button class="outline-wire" id="hintButton"><i data-lucide="lightbulb"></i> Hint</button><button class="outline-wire" id="resetButton"><i data-lucide="rotate-ccw"></i> Reset</button><button class="primary-wire" id="checkButton">CHECK CONNECTIONS <i data-lucide="arrow-right"></i></button></div>
+        <p class="wire-feedback" id="wireFeedback" role="status" aria-live="polite"></p>
+      </section>
+      <section class="wire-screen" id="reviewScreen" hidden>
+        <h1>CHECK THE <span>CONNECTIONS</span></h1><p class="wire-subtitle">Review all connections and make sure every wire is correctly connected.</p>
+        <div class="review-layout"><div class="review-board" id="reviewBoard"><div class="review-list" id="reviewList"></div></div><aside class="connection-status"><h2>CONNECTION STATUS</h2><div class="success-mark"><i data-lucide="check"></i></div><h3>ALL CONNECTIONS<br> CORRECT!</h3><p>All systems are properly connected and ready for activation.</p><div id="statusRows"></div></aside></div>
+        <div class="review-footer"><i data-lucide="info"></i><div><b>You have successfully connected all required systems.</b><p>Click “Proceed to Activation” to turn on the rocket systems and begin the launch countdown.</p></div><button class="outline-wire" id="recheckButton"><i data-lucide="rotate-ccw"></i> Recheck Connections</button><button class="primary-wire" id="proceedActivation">PROCEED TO ACTIVATION <i data-lucide="arrow-right"></i></button></div>
+      </section>
+      <section class="wire-screen" id="activationScreen" hidden>
+        <h1>ACTIVATE <span>ROCKET SYSTEMS</span></h1><p class="wire-subtitle">All five systems are connected. Run the pre-launch systems check to prepare your spacecraft.</p>
+        <div class="activation-card"><div class="activation-icon"><i data-lucide="settings-2"></i></div><h2>PRE-LAUNCH SYSTEMS CHECK</h2><p>Engine control, navigation, power, life support, and communication are wired and ready.</p><div class="activation-systems" id="activationSystems"></div><button class="primary-wire" id="activateSystems">ACTIVATE ALL SYSTEMS <i data-lucide="power"></i></button><p id="activationFeedback" role="status"></p></div>
+      </section>
+    </div>
+  </section>
+</main>
+<script src="js/shared-header.js"></script><script src="js/wiring-challenge.js"></script><script>if(window.lucide)lucide.createIcons();</script>
+</body></html>

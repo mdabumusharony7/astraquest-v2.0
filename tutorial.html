@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#061225">
+  <title>How It Works | ASTRAQUEST</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/tutorial.css">
+  <link rel="stylesheet" href="css/shared-header.css">
+</head>
+<body class="tutorial-page-body">
+<header class="site-header">
+  <a class="brand" href="index.html" aria-label="ASTRAQUEST home"><img src="assets/astraquest-logo.png" alt="ASTRAQUEST"></a>
+  <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+  <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+    <a class="nav-link" href="index.html">Home</a><a class="nav-link active" href="tutorial.html" aria-current="page">How it works</a><a class="nav-link" href="tutorial.html#how-to-play">Levels</a><a class="nav-link" href="nasa-data.html">NASA Data</a><a class="nav-link" href="store.html">Store</a>
+  </nav>
+  <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+</header>
+<main class="tutorial-page">
+  <section class="hero" aria-label="Tutorial introduction">
+    <div class="hero-backdrop"></div><div class="hero-shade"></div>
+    <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-dot"></span> ASTRAQUEST ACADEMY</p><h1>TUTORIAL</h1><p class="hero-subtitle">Learn how to play, complete missions, and prepare for quizzes using real NASA data.</p><div class="hero-tags"><span><i data-lucide="rocket"></i> Mission training</span><span><i data-lucide="database"></i> NASA data</span><span><i data-lucide="trophy"></i> Progress & rewards</span></div></div>
+    <img class="hero-astronaut" src="assets/tutorial/astronaut-hero.png" alt="Astronaut looking toward the horizon">
+    <div class="hero-bottom-glow"></div>
+  </section>
+  <section class="how-section panel" id="how-to-play">
+    <div class="section-heading"><div><p class="section-kicker">YOUR FIRST MISSION STARTS HERE</p><h2>HOW TO PLAY</h2><p>Follow these simple steps to start your journey.</p></div><span class="step-count">4 STEPS <i data-lucide="arrow-down-right"></i></span></div>
+    <div class="steps-grid">
+      <article class="step-card"><div class="step-top"><span class="step-number">1</span><h3>Choose a Mission</h3></div><div class="card-image"><img src="assets/tutorial/mission-selection.png" alt="Earth with routes to the Moon and Mars"></div><p>Select a destination like the Moon or Mars. Each mission has different challenges and quiz topics.</p><a class="card-action" href="mission-selection.html">Explore Missions <i data-lucide="chevron-right"></i></a></article>
+      <article class="step-card"><div class="step-top"><span class="step-number">2</span><h3>Launch the Rocket</h3></div><div class="card-image"><img src="assets/tutorial/rocket-launch.png" alt="Rocket launching from its pad"></div><p>Complete initial tasks and answer a few questions to prepare your rocket for launch.</p><a class="card-action" href="launch-sequence.html">Start Launch <i data-lucide="chevron-right"></i></a></article>
+      <article class="step-card"><div class="step-top"><span class="step-number">3</span><h3>Travel &amp; Learn</h3></div><div class="card-image"><img src="assets/tutorial/space-travel.png" alt="Rocket traveling above Earth"></div><p>Your rocket moves through space as you solve quizzes and learn real NASA data and facts.</p><a class="card-action" href="moon-dashboard.html">See Gameplay <i data-lucide="chevron-right"></i></a></article>
+      <article class="step-card"><div class="step-top"><span class="step-number">4</span><h3>Reach the Destination</h3></div><div class="card-image"><img src="assets/tutorial/lunar-landing.png" alt="Lunar lander and astronaut on the Moon"></div><p>Answer advanced quizzes, complete final challenges, and safely land to complete the mission.</p><a class="card-action" href="mission-results.html">View Example <i data-lucide="chevron-right"></i></a></article>
+    </div>
+  </section>
+  <section class="nasa-section panel" id="nasa-prep">
+    <div class="section-heading nasa-heading"><div><p class="section-kicker">LEARN FROM REAL SPACE SCIENCE</p><h2>NASA DATA QUIZ PREPARATION</h2><p>Our quizzes connect mission decisions with real data, images, and discoveries from NASA.</p></div><a class="outline-link" href="nasa-data.html">Learn More About NASA Data <i data-lucide="external-link"></i></a></div>
+    <div class="nasa-feature-grid">
+      <article class="nasa-feature"><div class="feature-icon"><i data-lucide="database"></i></div><div class="feature-copy"><h3>Real NASA Data</h3><p>Questions are created from NASA's open datasets, missions, images, and research.</p></div><img class="feature-art galaxy-art" src="assets/tutorial/galaxy.png" alt="Colorful spiral galaxy"></article>
+      <article class="nasa-feature"><div class="feature-icon"><i data-lucide="file-text"></i></div><div class="feature-copy"><h3>Topic-wise Practice</h3><p>Practice questions from topics like planets, exoplanets, galaxies, missions, spacecraft, and more.</p></div><img class="feature-art rover-art" src="assets/tutorial/mars-rover.png" alt="Mars rover exploring red terrain"></article>
+      <article class="nasa-feature"><div class="feature-icon"><i data-lucide="chart-no-axes-column-increasing"></i></div><div class="feature-copy"><h3>Track Your Progress</h3><p>See your accuracy, strengths, and weak topics, and improve with more practice.</p></div><img class="feature-art progress-art" src="assets/tutorial/progress-chart.png" alt="Rising progress chart with achievement star"></article>
+    </div>
+    <div class="cta-row"><a class="primary-cta" href="#tutorial-start"><i data-lucide="rocket"></i> Start Tutorial Mission <i data-lucide="chevron-right"></i></a></div>
+    <p class="bottom-note">Learn by playing. Explore space. Discover real knowledge.</p>
+  </section>
+  <section class="tutorial-start" id="tutorial-start" aria-live="polite"><div class="start-icon"><i data-lucide="orbit"></i></div><div><h2>Ready for your first mission?</h2><p>Start with mission selection, then follow each tutorial step at your own pace.</p></div><button id="beginTutorial" class="primary-cta">Begin Tutorial <i data-lucide="arrow-right"></i></button></section>
+  <footer class="site-footer"><span>© ASTRAQUEST</span><span>Explore. Learn. Survive.</span><a href="index.html">Back to Home</a></footer>
+</main>
+<script src="js/tutorial.js"></script>
+</body></html>

@@ -1,0 +1,79 @@
+/* ASTRAQUEST shared visual consistency: use the same Inter typography and Home-page header on every page. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+html, body.dashboard-page, body.dashboard-page *:not(svg):not(svg *) {
+  font-family: Inter, Arial, sans-serif !important;
+}
+body.dashboard-page { font-size: 14px; }
+.site-header {
+  height: 76px;
+  padding: 7px 2.2% 7px 1.4%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border-bottom: 1px solid #0787bc;
+  background: #020d1c;
+  position: relative;
+  z-index: 5;
+  justify-content: initial;
+}
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  width: min(390px, 30%);
+  min-width: 210px;
+  height: 100%;
+  margin: 0;
+}
+.site-header .brand img {
+  display: block;
+  width: 100%;
+  max-height: 64px;
+  object-fit: contain;
+  object-position: left center;
+}
+.site-header .main-nav {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(24px, 4.7vw, 78px);
+  margin-left: auto;
+  height: 100%;
+}
+.site-header .nav-link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  color: #e2eaf8;
+  font-size: clamp(13px, 1.1vw, 18px);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color .2s;
+}
+.site-header .nav-link:hover, .site-header .nav-link.active { color: #00c8ff; }
+.site-header .nav-link.active:after {
+  content: ""; height: 4px; background: #00c8ff; position: absolute;
+  bottom: 0; left: 0; right: 0; box-shadow: 0 0 12px #00c8ff;
+}
+.site-header .auth-nav { display:flex; gap:14px; margin-left:0; }
+.site-header .auth-nav a { color:#e2eaf8; text-decoration:none; font-size:14px; font-weight:600; }
+.site-header .auth-nav a:hover { color:#00c8ff; }
+.site-header .mobile-menu { display:none; }
+/* Dashboard panel headings retain their hierarchy without introducing a different typeface. */
+.dashboard-page .panel h2, .dashboard-page .dashboard-title h1,
+.dashboard-page .modal-card h2 { font-family: Inter, Arial, sans-serif !important; }
+@media (max-width: 900px) {
+  .site-header { gap:14px; padding-right:16px; }
+  .site-header .brand { min-width:160px; width:25%; }
+  .site-header .main-nav { gap:clamp(12px,2vw,24px); }
+  .site-header .auth-nav { gap:9px; }
+}
+@media (max-width: 700px) {
+  .site-header { height:64px; padding:7px 12px; justify-content:space-between; }
+  .site-header .brand { min-width:0; width: min(240px,70%); }
+  .site-header .brand img { width:100%; max-height:50px; }
+  .site-header .mobile-menu { display:block; background:none; border:0; color:white; padding:8px; }
+  .site-header .main-nav, .site-header .auth-nav { display:none; }
+  .site-header .main-nav.open { display:flex; position:absolute; top:64px; left:0; right:0; height:auto; margin:0; padding:16px; flex-direction:column; gap:0; background:#020d1c; border-bottom:1px solid #0787bc; }
+  .site-header .main-nav.open .nav-link { padding:12px 4px; }
+}

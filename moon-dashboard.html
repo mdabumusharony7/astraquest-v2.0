@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ASTRAQUEST | Moon Mission Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/moon-dashboard.css">
+<link rel="stylesheet" href="css/dashboard-consistency.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="css/shared-header.css">
+<link rel="stylesheet" href="css/mission-clock.css">
+<link rel="stylesheet" href="css/dashboard-viewport.css">
+<link rel="stylesheet" href="css/dashboard-reference.css">
+</head>
+<body class="dashboard-page">
+<header class="site-header">
+    <a class="brand" href="index.html" aria-label="ASTRAQUEST home">
+      <img src="assets/astraquest-logo.png" alt="ASTRAQUEST — Junior Astronaut Mission Trainer">
+    </a>
+    <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="tutorial.html">How it works</a>
+      <a class="nav-link" href="index.html#learn">Levels</a>
+      <a class="nav-link" href="nasa-data.html">NASA Data</a>
+      <a class="nav-link" href="store.html">Store</a>
+    </nav>
+    <div class="auth-nav"><a href="auth.html?mode=signup">Sign Up</a><a href="auth.html?mode=login">Log In</a></div>
+  </header>
+<main class="dashboard-shell">
+  <aside class="left-column">
+    <section class="panel overview-panel"><h2>MISSION OVERVIEW</h2><div class="overview-row"><i data-lucide="rocket"></i><div><span>Rocket</span><strong id="rocketName">Pioneer-1</strong></div><img id="overviewMoon" src="assets/moon.png" alt="Moon"></div><div class="overview-row"><i data-lucide="users"></i><div><span>Crew</span><strong id="crewCount">4 Members</strong></div></div><div class="overview-row"><i data-lucide="moon-star"></i><div><span>Destination</span><strong id="destination">Moon</strong></div></div><div class="overview-row"><i data-lucide="package"></i><div><span>Initial Resources</span><strong id="initialResources">1000 Units</strong></div></div></section>
+    <section class="panel crew-panel"><div class="panel-heading"><h2>CREW MEMBERS</h2><button id="viewCrew">View Details <i data-lucide="arrow-right"></i></button></div><div id="crewList" class="crew-list"></div><p class="crew-note" id="crewNote"></p></section>
+  </aside>
+  <section class="center-column">
+    <div class="dashboard-title"><div><h1 id="dashboardMissionTitle">MOON MISSION <span>DASHBOARD</span></h1><p>Manage your resources, keep your crew healthy, and survive the challenges on the Moon.</p></div><div class="top-status"><div class="panel day-card"><i data-lucide="calendar-days"></i><div><small>Mission Day</small><strong id="missionDay">1 / 7</strong><small class="day-countdown" id="dayCountdown">Next day in 00:30</small><div class="progress"><span id="dayProgressBar"></span></div></div></div><div class="panel phase-card"><img src="assets/moon.png" alt="Moon"><div><small>Current Phase</small><strong>Arrival</strong><span>Set up a basic camp</span></div></div></div></div>
+    <div class="hero-image" role="img" aria-label="Lunar base with lander, astronaut and Earth"></div>
+    <section class="panel resource-panel"><div class="panel-heading"><h2>RESOURCE STATUS <i data-lucide="circle-help"></i></h2><div>Total: <strong id="resourceTotal">1000</strong> Units</div></div><div class="resource-grid" id="resourceGrid"></div></section>
+    <section class="panel progression-panel"><div class="panel-heading"><h2>LEVEL PROGRESSION <i data-lucide="circle-help"></i></h2><span id="pointsLabel">0 Points</span></div><div class="levels"><div class="level active"><span class="level-icon">🚀</span><b>Level 1</b><small>0 Points</small></div><div class="level"><span class="level-icon"><i data-lucide="lock"></i></span><b>Level 2</b><small>100 Points</small></div><div class="level"><span class="level-icon"><i data-lucide="lock"></i></span><b>Level 3</b><small>250 Points</small></div><div class="level"><span class="level-icon"><i data-lucide="lock"></i></span><b>Level 4</b><small>450 Points</small></div><div class="level"><span class="level-icon"><i data-lucide="lock"></i></span><b>Level 5</b><small>700 Points</small></div><div class="level"><span class="level-icon"><i data-lucide="lock"></i></span><b>Level 6</b><small>1000 Points</small></div></div></section>
+  </section>
+  <aside class="right-column"><section class="panel event-panel"><h2>TODAY'S EVENT</h2><div class="event-title"><i data-lucide="alert-circle"></i><strong id="eventName">Scanning for mission events</strong></div><img class="event-image" id="eventImage" src="assets/dashboard-event.png" alt="Lunar landing site"><p id="eventSummary">Mission days advance automatically. A crisis alert will open here when your crew needs to respond.</p><div class="event-countdown" id="eventCountdown" role="status" aria-live="polite">Monitoring mission schedule…</div></section><section class="panel quick-panel"><h2>QUICK ACTIONS</h2><div class="quick-grid"><button data-action="crew"><i data-lucide="users"></i><span>Manage Crew</span></button><button data-action="resources"><i data-lucide="package"></i><span>Use Resources</span></button><button data-action="research"><i data-lucide="flask-conical"></i><span>Research</span></button><button data-action="log"><i data-lucide="file-text"></i><span>Mission Log</span></button></div></section><section class="panel conditions-panel"><h2>BASE CONDITIONS</h2><div class="condition-items"><div><i data-lucide="thermometer"></i><span>Temperature<br><b>-173 °C</b></span></div><div><i data-lucide="radiation"></i><span>Radiation<br><b>Safe</b></span></div><div><i data-lucide="wind"></i><span>Dust Storm<br><b>None</b></span></div><div><i data-lucide="sun"></i><span>Sunlight<br><b>12 hours</b></span></div></div><img src="assets/dashboard-conditions.png" alt="Lunar base conditions landscape"></section></aside>
+</main>
+<div class="modal" id="crewModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" id="closeCrew" aria-label="Close">×</button><h2>SELECTED CREW MANIFEST</h2><p>Your four selected crew members are assigned to this mission.</p><div id="manifestList"></div></div></div>
+<div class="crisis-modal" id="crisisModal" aria-hidden="true">
+  <section class="crisis-dialog" role="dialog" aria-modal="true" aria-labelledby="crisisTitle" aria-describedby="crisisDescription">
+    <div class="crisis-alert-icon"><i data-lucide="triangle-alert"></i></div>
+    <p class="crisis-eyebrow">AUTOMATIC MISSION ALERT · DAY <span id="crisisDay">2</span></p>
+    <h2 id="crisisTitle">CRISIS DETECTED</h2>
+    <p id="crisisDescription">Your crew needs your help. Respond now to protect the mission.</p>
+    <div class="crisis-resource-target"><i data-lucide="package-alert"></i><span>RESOURCE AT RISK<strong id="crisisTarget">Mission supplies</strong></span></div>
+    <button class="primary-button" id="respondCrisis" type="button">Respond to Crisis <i data-lucide="arrow-right"></i></button>
+  </section>
+</div>
+<script src="js/shared-header.js"></script><script src="js/moon-dashboard.js"></script>
+</body></html>

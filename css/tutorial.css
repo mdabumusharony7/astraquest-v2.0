@@ -1,0 +1,92 @@
+:root{--bg:#030b18;--panel:rgba(5,20,38,.91);--panel2:rgba(7,27,48,.94);--line:rgba(61,155,224,.28);--blue:#1599ff;--cyan:#31d4ff;--text:#f3f8ff;--muted:#a9bfd6;--font:'Inter',sans-serif;--display:'Inter',sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#0b2a4a 0,#061426 42%,#020711 100%);color:var(--text);font-family:var(--font);font-size:14px;min-height:100vh}a{color:inherit;text-decoration:none}.site-header{height:78px;display:flex;align-items:center;gap:28px;padding:0 clamp(18px,4vw,58px);background:rgba(2,8,18,.95);border-bottom:1px solid rgba(67,158,226,.22);position:relative;z-index:10}.brand{width:190px;flex-shrink:0;display:flex;align-items:center}.brand img{display:block;width:100%;max-height:52px;object-fit:contain}.main-nav{display:flex;align-items:center;gap:clamp(14px,2.1vw,30px);margin-left:auto}.nav-link{font-size:12px;color:#c0d0e1;font-weight:600;white-space:nowrap;transition:color .2s}.nav-link:hover,.nav-link.active{color:#fff}.nav-link.active{position:relative}.nav-link.active:after{content:'';position:absolute;bottom:-30px;left:0;right:0;height:2px;background:#1aa9ff;box-shadow:0 0 12px #1599ff}.auth-nav{display:flex;gap:9px;margin-left:8px}.auth-nav a{font-size:11px;font-weight:700;padding:10px 15px;border:1px solid #188fe0;border-radius:7px}.auth-nav a:first-child{background:linear-gradient(120deg,#0787ed,#18b7ff);border-color:transparent;box-shadow:0 0 16px #0787ed33}.mobile-menu{display:none;background:none;border:1px solid var(--line);color:white;border-radius:8px;padding:8px}.tutorial-page{max-width:1600px;margin:auto;padding:0 18px 22px}.hero{height:300px;position:relative;isolation:isolate;overflow:hidden;border-bottom:1px solid rgba(42,160,242,.3);margin:0 -18px 0}.hero-backdrop{position:absolute;inset:0;background-image:url('../assets/tutorial/tutorial-hero-bg.png');background-size:cover;background-position:center 54%;z-index:-3;transform:scale(1.01)}.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(1,8,19,.94) 0%,rgba(2,10,23,.73) 34%,rgba(2,10,23,.08) 68%,rgba(2,10,23,.12) 100%),linear-gradient(0deg,rgba(2,12,25,.8),transparent 48%);z-index:-2}.hero-copy{position:relative;padding:44px clamp(24px,4vw,60px);max-width:610px;z-index:2}.eyebrow,.section-kicker{font-size:9px;letter-spacing:1.7px;font-weight:800;color:#55caff;margin:0 0 7px}.eyebrow-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#31d4ff;box-shadow:0 0 10px #31d4ff;margin-right:7px}.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(42px,5vw,66px);line-height:.95;letter-spacing:1.3px;margin:0 0 12px;text-shadow:0 4px 20px #000}.hero-subtitle{max-width:440px;color:#d2e1f1;line-height:1.6;font-size:13px;margin:0}.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:19px}.hero-tags span{display:flex;align-items:center;gap:6px;background:rgba(4,22,42,.7);border:1px solid rgba(70,174,235,.32);border-radius:20px;padding:7px 10px;color:#d5e9fb;font-size:10px}.hero-tags svg{width:13px;height:13px;color:#39bdff}.hero-astronaut{position:absolute;right:clamp(5px,6vw,90px);bottom:-75px;height:365px;max-width:48%;object-fit:contain;object-position:bottom;z-index:1;filter:drop-shadow(0 0 22px #1a8cd833)}.hero-bottom-glow{position:absolute;bottom:0;left:0;right:0;height:1px;background:#188fe0;box-shadow:0 0 22px #188fe0}.panel{background:linear-gradient(145deg,rgba(5,20,37,.96),rgba(3,14,27,.97));border:1px solid rgba(46,126,184,.33);border-radius:0 0 16px 16px;box-shadow:0 16px 35px #0002}.how-section{padding:20px 20px 17px}.section-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin:0 2px 14px}.section-kicker{margin-bottom:4px;font-size:8px}.section-heading h2{font-family:var(--display);font-size:25px;line-height:1.05;letter-spacing:.4px;margin:0 0 5px;font-weight:800}.section-heading p:not(.section-kicker){font-size:11px;color:var(--muted);margin:0;line-height:1.5}.step-count{display:flex;align-items:center;gap:8px;font-size:9px;color:#85bde7;border:1px solid var(--line);border-radius:5px;padding:8px 10px;white-space:nowrap}.step-count svg{width:13px;height:13px}.steps-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.step-card{min-width:0;padding:10px;border:1px solid rgba(48,124,181,.43);background:linear-gradient(155deg,rgba(8,31,53,.96),rgba(4,17,31,.96));border-radius:12px;display:flex;flex-direction:column;transition:transform .2s,border-color .2s,box-shadow .2s}.step-card:hover{transform:translateY(-3px);border-color:rgba(34,169,255,.8);box-shadow:0 8px 25px #007ad51a}.step-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}.step-number{display:grid;place-items:center;width:29px;height:29px;flex:0 0 29px;border-radius:50%;background:linear-gradient(135deg,#3bbaff,#0068f6);box-shadow:0 0 15px #008bff4a;color:white;font-size:15px;font-weight:800}.step-top h3{font-size:11px;margin:0;font-weight:700;line-height:1.25}.card-image{height:112px;overflow:hidden;border-radius:7px;background:#061321;border:1px solid rgba(81,151,204,.15);display:flex;align-items:center;justify-content:center}.card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.step-card:hover .card-image img{transform:scale(1.04)}.step-card:nth-child(2) .card-image img{object-position:center 40%}.step-card:nth-child(3) .card-image img{object-position:center 45%}.step-card p{font-size:10.5px;line-height:1.5;color:#c1d2e4;margin:9px 1px 11px;flex:1}.card-action{display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(100deg,rgba(13,64,101,.75),rgba(7,37,64,.9));border:1px solid #176da7;border-radius:7px;padding:8px 10px;font-size:10px;font-weight:700;color:#eff9ff;transition:background .2s}.card-action:hover{background:linear-gradient(100deg,#0878c8,#064b86)}.card-action svg{width:13px;height:13px;color:#54caff}.nasa-section{padding:18px 20px 13px;border-radius:14px;margin-top:0;background:linear-gradient(180deg,rgba(4,17,32,.97),rgba(3,13,25,.96))}.nasa-heading{align-items:center;margin-bottom:13px}.outline-link{display:flex;align-items:center;gap:7px;border:1px solid #087bc2;color:#8edaff;border-radius:7px;padding:9px 11px;font-size:9px;font-weight:700;white-space:nowrap}.outline-link:hover{background:#087bc226}.outline-link svg{width:12px;height:12px}.nasa-feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.nasa-feature{min-height:105px;display:flex;align-items:flex-start;gap:10px;position:relative;overflow:hidden;border-radius:10px;border:1px solid rgba(50,124,182,.36);background:linear-gradient(110deg,rgba(10,33,57,.98),rgba(4,18,34,.97));padding:12px}.feature-icon{display:grid;place-items:center;flex:0 0 31px;width:31px;height:31px;border-radius:9px;background:linear-gradient(145deg,#123d69,#071c34);color:#1db5ff;box-shadow:inset 0 0 0 1px #1e7ebd44}.feature-icon svg{width:18px;height:18px;stroke-width:2.3}.feature-copy{position:relative;z-index:2;max-width:58%}.feature-copy h3{font-size:10px;margin:1px 0 5px}.feature-copy p{font-size:9px;line-height:1.5;color:#b7cce0;margin:0}.feature-art{position:absolute;right:0;top:0;width:34%;height:100%;object-fit:cover;opacity:.9;mask-image:linear-gradient(90deg,transparent 0%,#000 32%)}.galaxy-art{object-position:center}.rover-art{width:35%;object-position:40% center}.progress-art{object-fit:contain;object-position:center;background:linear-gradient(135deg,#08192b,#0b2036);padding:7px;opacity:.95}.cta-row{display:flex;justify-content:center;margin:12px 0 5px}.primary-cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:280px;padding:11px 20px;border:1px solid #49c6ff;border-radius:9px;color:white;background:linear-gradient(100deg,#087bff,#05b8ff);font:700 12px var(--font);box-shadow:0 0 20px #008dff65,inset 0 1px #ffffff45;cursor:pointer;transition:transform .2s,filter .2s}.primary-cta:hover{transform:translateY(-2px);filter:brightness(1.12)}.primary-cta svg{width:17px;height:17px}.primary-cta svg:last-child{width:14px;height:14px;margin-left:auto}.bottom-note{text-align:center;font-size:9px;color:#88a7c4;margin:7px 0 0}.tutorial-start{margin:16px 0;padding:17px 20px;border:1px solid rgba(49,148,211,.3);border-radius:13px;background:linear-gradient(100deg,#071a30,#0a2946);display:flex;align-items:center;gap:14px}.start-icon{width:43px;height:43px;display:grid;place-items:center;background:#0d3d67;border:1px solid #1b83c5;border-radius:12px;color:#3bc4ff}.start-icon svg{width:23px;height:23px}.tutorial-start h2{font-size:13px;margin:0 0 4px}.tutorial-start p{font-size:10px;color:var(--muted);margin:0;line-height:1.5}.tutorial-start .primary-cta{min-width:160px;margin-left:auto;padding:10px 13px;font-size:10px}.site-footer{display:flex;justify-content:space-between;gap:15px;padding:13px 3px;color:#7390ad;font-size:9px}.site-footer a{color:#9cdfff}.site-footer a:hover{color:#fff}
+@media(min-width:1200px){.tutorial-page{padding-left:24px;padding-right:24px}.hero{margin-left:-24px;margin-right:-24px}.hero{height:315px}.card-image{height:125px}.how-section{padding:22px 24px 20px}.nasa-section{padding:20px 24px 15px}}@media(max-width:900px){.site-header{gap:14px;padding:0 18px}.brand{width:150px}.main-nav{gap:13px}.nav-link{font-size:11px}.auth-nav a{padding:9px 10px}.hero-astronaut{right:0;max-width:47%;height:330px}.steps-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card-image{height:150px}.nasa-feature-grid{grid-template-columns:1fr}.nasa-feature{min-height:94px}.feature-copy{max-width:66%}.feature-art{width:25%}.rover-art{width:26%}.progress-art{width:26%}}@media(max-width:620px){.site-header{height:66px;justify-content:space-between}.brand{width:145px}.mobile-menu{display:block;margin-left:auto}.main-nav{display:none;position:absolute;top:65px;left:0;right:0;margin:0;padding:14px 18px;background:#04101f;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}.main-nav.open{display:flex}.nav-link{padding:13px 4px;border-bottom:1px solid #163149}.nav-link.active:after{display:none}.auth-nav{gap:6px;margin-left:0}.auth-nav a{font-size:10px;padding:8px}.auth-nav a:first-child{display:none}.tutorial-page{padding:0 10px 18px}.hero{height:300px;margin:0 -10px}.hero-copy{padding:34px 20px;max-width:82%}.hero h1{font-size:48px}.hero-subtitle{font-size:11px;max-width:300px}.hero-tags{max-width:290px;gap:5px}.hero-tags span{font-size:8px;padding:6px 8px}.hero-astronaut{height:210px;max-width:58%;right:-24px;bottom:-12px;opacity:.9}.hero-shade{background:linear-gradient(90deg,rgba(1,8,19,.94),rgba(2,10,23,.55) 64%,rgba(2,10,23,.18)),linear-gradient(0deg,rgba(2,12,25,.8),transparent 65%)}.how-section,.nasa-section{padding:16px 12px}.section-heading{align-items:flex-start}.section-heading h2{font-size:23px}.section-heading p:not(.section-kicker){max-width:290px;font-size:10px}.step-count{display:none}.steps-grid{gap:9px}.step-card{padding:8px}.step-top{gap:7px}.step-number{width:25px;height:25px;flex-basis:25px;font-size:12px}.step-top h3{font-size:10px}.card-image{height:95px}.step-card p{font-size:9.5px}.card-action{font-size:9px;padding:8px}.nasa-heading{flex-direction:column;align-items:flex-start}.outline-link{font-size:9px}.nasa-feature{padding:10px;min-height:96px}.feature-copy{max-width:65%}.feature-copy p{font-size:9px}.cta-row{margin-top:14px}.primary-cta{min-width:0;width:100%;max-width:330px}.tutorial-start{align-items:flex-start;flex-wrap:wrap;padding:14px}.tutorial-start .primary-cta{width:100%;max-width:none;margin:0}.site-footer{flex-wrap:wrap}.site-footer span:nth-child(2){display:none}}@media(max-width:390px){.auth-nav a{padding:7px;font-size:9px}.hero-tags span:last-child{display:none}.steps-grid{grid-template-columns:1fr}.card-image{height:145px}.step-card p{font-size:10px}.hero-astronaut{opacity:.65}}
+
+/* ASTRAQUEST shared-header compatibility overrides */
+.site-header{height:76px;padding:7px 2.2% 7px 1.4%;display:flex;align-items:center;gap:24px;border-bottom:1px solid #0787bc;background:#020d1c;position:relative;z-index:10}
+.brand{width:min(390px,30%);min-width:210px;height:100%;display:flex;align-items:center;flex-shrink:0}
+.brand img{display:block;width:100%;max-height:64px;object-fit:contain;object-position:left center}
+.main-nav{display:flex;align-items:stretch;justify-content:center;gap:clamp(14px,2.1vw,30px);margin-left:auto;height:100%}
+.nav-link{display:flex;align-items:center;position:relative;text-decoration:none;color:#e2eaf8;font-size:clamp(12px,1.0vw,16px);font-weight:600;white-space:nowrap}
+.nav-link:hover,.nav-link.active{color:#00c8ff}
+.nav-link.active:after{content:"";height:4px;background:#00c8ff;position:absolute;bottom:0;left:0;right:0;box-shadow:0 0 12px #00c8ff}
+.auth-nav{display:flex;gap:10px;margin-left:8px}
+.auth-nav a{font-size:12px;font-weight:700;padding:10px 14px;border:1px solid #0787bc;border-radius:7px}
+.auth-nav a:first-child{background:linear-gradient(120deg,#0787ed,#18b7ff);border-color:transparent}
+@media(max-width:900px){.site-header{gap:14px;padding:7px 16px}.brand{width:180px;min-width:150px}.main-nav{gap:12px}.nav-link{font-size:12px}.auth-nav a{padding:9px 10px}}
+@media(max-width:620px){.site-header{height:66px;justify-content:space-between;padding:0 12px}.brand{width:145px;min-width:120px}.mobile-menu{display:block;margin-left:auto}.main-nav{display:none;position:absolute;top:65px;left:0;right:0;margin:0;padding:14px 18px;background:#04101f;border-bottom:1px solid rgba(61,155,224,.28);flex-direction:column;align-items:stretch;gap:0}.main-nav.open{display:flex}.nav-link{padding:13px 4px;border-bottom:1px solid #163149}.nav-link.active:after{display:none}.auth-nav{gap:6px;margin-left:0}.auth-nav a{font-size:10px;padding:8px}.auth-nav a:first-child{display:none}}
+
+
+/* ========================================
+   HEADER SIZE — MATCH THE HOME PAGE
+   Tutorial page only; keep shared markup.
+======================================== */
+.site-header {
+    height: 69px;
+    min-height: 69px;
+    padding: 0 1.4% 0 1.2%;
+    gap: 24px;
+}
+
+.site-header .brand {
+    width: 145px;
+    min-width: 145px;
+    height: 100%;
+}
+
+.site-header .brand img {
+    width: 100%;
+    max-height: 42px;
+    object-fit: contain;
+    object-position: left center;
+}
+
+.site-header .main-nav {
+    align-items: center;
+    gap: clamp(14px, 2.1vw, 30px);
+    height: 100%;
+}
+
+.site-header .nav-link {
+    font-size: 14px;
+}
+
+.site-header .auth-nav {
+    align-items: center;
+    gap: 9px;
+}
+
+.site-header .auth-nav a {
+    font-size: 11px;
+    padding: 4px 8px;
+}
+
+@media (max-width: 900px) {
+    .site-header {
+        height: 69px;
+        min-height: 69px;
+        padding: 0 16px;
+        gap: 14px;
+    }
+    .site-header .brand {
+        width: 145px;
+        min-width: 145px;
+    }
+    .site-header .main-nav {
+        gap: 12px;
+    }
+    .site-header .nav-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 620px) {
+    .site-header {
+        height: 66px;
+        min-height: 66px;
+        padding: 0 12px;
+    }
+    .site-header .brand {
+        width: 145px;
+        min-width: 120px;
+    }
+}

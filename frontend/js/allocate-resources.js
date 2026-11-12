@@ -43,11 +43,30 @@
   document.getElementById('resetResources').addEventListener('click', () => {
     rows.forEach(row => { const input = row.querySelector('.resource-number'); input.value = initial[row.dataset.resource]; update(row, input); });
   });
-  save.addEventListener('click', () => {
+  save.addEventListener('click', async () => {
     if (total() !== budget) return;
     const allocation = values();
     try { localStorage.setItem('astraquestResourceAllocation', JSON.stringify(allocation)); } catch (e) { /* Keep the page usable without storage. */ }
     message.textContent = 'Allocation saved. Continuing to the mission launch preparation…';
+    const missionId = Number(localStorage.getItem('astraquestMissionId'));
+    if (window.AstraquestApi.isAuthenticated() && missionId > 0) {
+      save.disabled = true;
+      try {
+        const config = JSON.parse(localStorage.getItem('astraquestMissionConfig') || '{}');
+        await window.AstraquestApi.request(`/api/missions/${missionId}/`, {
+          method: 'PATCH',
+          body: {
+            resources: allocation,
+            selected_rocket: localStorage.getItem('astraquestSelectedRocket') || '',
+            config,
+          },
+        });
+      } catch (error) {
+        message.textContent = `Resources could not be saved: ${error.message}`;
+        save.disabled = false;
+        return;
+      }
+    }
     window.location.href = 'launch-sequence.html';
   });
   refresh();

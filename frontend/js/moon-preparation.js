@@ -38,7 +38,7 @@
   });
   document.querySelectorAll('[data-objective]').forEach(button => button.addEventListener('click', () => setObjective(button.dataset.objective)));
   document.querySelectorAll('[data-card-objective]').forEach(card => card.addEventListener('click', () => setObjective(card.dataset.cardObjective)));
-  $('#continueMission').addEventListener('click', () => {
+  $('#continueMission').addEventListener('click', async () => {
     const units = Number(unitsInput.value);
     if (!Number.isInteger(units) || units < 1000 || units > 1500) {
       message.textContent = 'Enter total cargo units from 1,000 to 1,500.';
@@ -48,6 +48,22 @@
     state.units = units;
     const config = { mission: 'Moon', crewSize: state.crew, durationDays: state.days, totalUnits: state.units, objective: state.objective };
     try { sessionStorage.setItem('astraquestMissionConfig', JSON.stringify(config)); localStorage.setItem('astraquestMissionConfig', JSON.stringify(config)); localStorage.setItem('astraquestMissionDurationDays', String(state.days)); } catch (_) {}
+    const missionId = Number(localStorage.getItem('astraquestMissionId'));
+    if (window.AstraquestApi.isAuthenticated() && missionId > 0) {
+      try {
+        await window.AstraquestApi.request(`/api/missions/${missionId}/`, {
+          method: 'PATCH',
+          body: {
+            duration_days: state.days,
+            crew_size: state.crew,
+            config
+          }
+        });
+      } catch (error) {
+        message.textContent = `Mission settings could not be saved: ${error.message}`;
+        return;
+      }
+    }
     const next = new URL('crew-selection.html', window.location.href);
     next.searchParams.set('mission', 'Moon');
     next.searchParams.set('crew', String(state.crew));

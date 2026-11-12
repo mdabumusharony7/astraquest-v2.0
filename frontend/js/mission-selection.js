@@ -14,15 +14,29 @@ function showMissionToast(message) {
   window.setTimeout(() => toast.classList.remove('show'), 2200);
 }
 document.querySelectorAll('.select-mission').forEach((button) => {
-  button.addEventListener('click', () => {
+  button.addEventListener('click', async () => {
     const mission = button.dataset.mission;
     try { localStorage.setItem('astraquestSelectedMission', mission); } catch (error) { /* Continue without persistence if storage is unavailable. */ }
     button.disabled = true;
     button.innerHTML = '<i data-lucide="check-circle"></i> MISSION SELECTED';
     if (window.lucide) window.lucide.createIcons();
-    showMissionToast(`${mission} mission selected. Preparing your mission…`);
-    const nextPage = mission === 'Moon' ? 'moon-preparation.html' : 'rocket-hangar.html?mission=Mars';
-    window.setTimeout(() => { window.location.href = nextPage; }, 450);
+    try {
+      if (window.AstraquestApi.isAuthenticated()) {
+        const savedMission = await window.AstraquestApi.request('/api/missions/', {
+          method: 'POST',
+          body: { destination: mission.toLowerCase() }
+        });
+        localStorage.setItem('astraquestMissionId', String(savedMission.id));
+      }
+      showMissionToast(`${mission} mission selected. Preparing your mission…`);
+      const nextPage = mission === 'Moon' ? 'moon-preparation.html' : 'rocket-hangar.html?mission=Mars';
+      window.setTimeout(() => { window.location.href = nextPage; }, 450);
+    } catch (error) {
+      button.disabled = false;
+      button.innerHTML = '<i data-lucide="arrow-right"></i> SELECT MISSION';
+      if (window.lucide) window.lucide.createIcons();
+      showMissionToast(error.message || 'Could not save your mission. Please try again.');
+    }
   });
 });
 document.querySelectorAll('[data-placeholder="true"]').forEach((link) => {

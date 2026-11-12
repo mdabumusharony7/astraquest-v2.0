@@ -167,7 +167,46 @@
     state.paused = true;
     state.completed = outcome === 'success'; state.failed = outcome === 'failed';
     write('astraquestMissionOutcome', outcome); saveState();
-    location.href = `mission-results.html?outcome=${outcome}`;
+    const resultsPage = `mission-results.html?outcome=${outcome}`;
+    const missionId = Number(read('astraquestMissionId', '0'));
+    const alreadySaved = read('astraquestMissionResultSavedId') === String(missionId);
+    if (!window.AstraquestApi.isAuthenticated() || missionId <= 0 || alreadySaved) {
+      location.href = resultsPage;
+      return;
+    }
+
+    const resources = getAllocation();
+    const crisisCount = Number(read('astraquestCrisesCompleted', '0')) || 0;
+    window.AstraquestApi.request(`/api/missions/${missionId}/`, {
+      method: 'PATCH',
+      body: {
+        day: state.day,
+        resources,
+        schedule: state.schedule,
+        config: readMissionConfig() || {}
+      }
+    }).then(() => window.AstraquestApi.request('/api/results/', {
+      method: 'POST',
+      body: {
+        mission: missionId,
+        result_type: 'mission',
+        title: `${destination} Mission`,
+        score: outcome === 'success' ? 10 : 0,
+        details: {
+          outcome,
+          day: state.day,
+          duration_days: state.durationDays,
+          crises_completed: crisisCount,
+          resources
+        }
+      }
+    })).then(() => {
+      write('astraquestMissionResultSavedId', String(missionId));
+      location.href = resultsPage;
+    }).catch(error => {
+      $('eventCountdown').textContent = `Mission result could not be saved: ${error.message}`;
+      window.setTimeout(() => { location.href = resultsPage; }, 3000);
+    });
   }
   function processDayEnd() {
     const values = getAllocation();

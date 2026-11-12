@@ -234,9 +234,33 @@
     if (resolved) write('astraquestCrisesCompleted', Number(read('astraquestCrisesCompleted', '0')) + 1);
     const missionFailed = stock <= 0;
     const title = missionFailed ? 'FOOD SUPPLIES DEPLETED' : resolved ? 'FOOD SUPPLIES SECURED' : 'CRISIS NOT RESOLVED';
-    $('gameContent').innerHTML = `<div class="result-wrap ${resolved ? '' : 'failed'}"><div class="result-symbol">${missionFailed ? '🆘' : resolved ? '🥫' : '⚠️'}</div><p class="brief-kicker">CRISIS COMPLETE</p><h2>${title}</h2><p>${missionFailed ? 'Food has reached zero. The mission can no longer continue.' : resolved ? 'Your crew secured the food packets and completed the science check.' : 'The combined score was below 6. The mission continues if all required resources remain above zero.'}</p><div class="score-cards"><div class="score-card"><span>Packets caught</span><strong>${caught} / 10</strong></div><div class="score-card"><span>Mini-game marks</span><strong>${mini} / 5</strong></div><div class="score-card"><span>Science quiz</span><strong>${quizScore} / 5</strong></div></div><div class="resource-effect">Combined crisis score: <b>${total} / 10</b><br>${effect}<br>Food remaining: <b>${stock} / ${cap}</b> units</div><div class="result-actions"><button class="food-button" id="returnDashboard" type="button">${missionFailed ? 'View Mission Results' : 'Return to Dashboard'} <i data-lucide="arrow-right"></i></button></div></div>`;
+    $('gameContent').innerHTML = `<div class="result-wrap ${resolved ? '' : 'failed'}"><div class="result-symbol">${missionFailed ? '🆘' : resolved ? '🥫' : '⚠️'}</div><p class="brief-kicker">CRISIS COMPLETE</p><h2>${title}</h2><p>${missionFailed ? 'Food has reached zero. The mission can no longer continue.' : resolved ? 'Your crew secured the food packets and completed the science check.' : 'The combined score was below 6. The mission continues if all required resources remain above zero.'}</p><div class="score-cards"><div class="score-card"><span>Packets caught</span><strong>${caught} / 10</strong></div><div class="score-card"><span>Mini-game marks</span><strong>${mini} / 5</strong></div><div class="score-card"><span>Science quiz</span><strong>${quizScore} / 5</strong></div></div><div class="resource-effect">Combined crisis score: <b>${total} / 10</b><br>${effect}<br>Food remaining: <b>${stock} / ${cap}</b> units</div><p id="backendResultStatus" role="status" aria-live="polite"></p><div class="result-actions"><button class="food-button" id="returnDashboard" type="button">${missionFailed ? 'View Mission Results' : 'Return to Dashboard'} <i data-lucide="arrow-right"></i></button></div></div>`;
     $('returnDashboard').addEventListener('click', () => { location.href = 'moon-dashboard.html?crisisComplete=1'; });
     icons();
+    const missionId = Number(read('astraquestMissionId', '0'));
+    if (window.AstraquestApi.isAuthenticated() && missionId > 0) {
+      $('backendResultStatus').textContent = 'Saving result to your account…';
+      window.AstraquestApi.request('/api/results/', {
+        method: 'POST',
+        body: {
+          mission: missionId,
+          result_type: 'crisis',
+          title: 'Space Food Rescue',
+          score: total,
+          details: {
+            caught,
+            mini_game_score: mini,
+            quiz_score: quizScore,
+            resolved,
+            food_remaining: stock
+          }
+        }
+      }).then(() => {
+        $('backendResultStatus').textContent = 'Crisis result saved to your account.';
+      }).catch(error => {
+        $('backendResultStatus').textContent = `Result could not be saved: ${error.message}`;
+      });
+    }
   }
 
   $('exitGame').addEventListener('click', () => {

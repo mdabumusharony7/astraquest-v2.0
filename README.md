@@ -1,45 +1,97 @@
-# ASTRAQUEST Vanilla Frontend
+# ASTRAQUEST
+
+## Project folders
+- `frontend/` — React homepage, Vite setup, and the existing pages, scripts, styles, and assets.
+- `backend/` — Django REST API, PostgreSQL configuration, migrations, and API tests.
 
 ## Run locally
-1. Open this folder in VS Code.
-2. Start Live Server on `index.html`.
-3. Use the homepage NASA Data link to open the data explorer.
-4. Select a topic card to open its dedicated learning page.
+Start PostgreSQL, then use two terminals.
+
+### Backend terminal
+```sh
+cd backend
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp -n .env.example .env
+```
+Set `DJANGO_SECRET_KEY` and PostgreSQL credentials in `backend/.env`, then run:
+```sh
+python manage.py migrate
+python manage.py seed_store
+python manage.py createsuperuser
+python manage.py runserver
+```
+
+### Frontend terminal
+```sh
+cd frontend
+npm install
+npm run dev
+```
+Open the local URL printed by Vite. Vite proxies `/api` requests to Django on port 8000.
+
+For API tests without PostgreSQL:
+`cd backend && DJANGO_DEBUG=True DATABASE_URL=sqlite:///:memory: python manage.py test`
+
+The homepage is built with React. Vite serves and builds all existing HTML pages
+as separate entry points so mission and learning flows remain available during
+the incremental migration. Static files in `frontend/assets/` are included in
+production builds.
+
+## Checks
+- `cd frontend && npm run lint`
+- `cd frontend && npm run build`
+- `cd backend && DJANGO_DEBUG=True DATABASE_URL=sqlite:///:memory: python manage.py test`
+
+### API
+- `POST /api/auth/register/`, `POST /api/auth/token/`, `POST /api/auth/token/refresh/`, `GET /api/auth/me/`
+- `GET|POST /api/missions/`, `GET|PATCH /api/missions/{id}/`
+- `GET|POST /api/results/`; mission results update the mission status and contribute to the leaderboard.
+- `GET /api/store/items/`, `GET /api/store/inventory/`, `POST /api/store/purchases/`
+- `GET /api/leaderboard/`
+- `GET /admin/` for the Django admin.
+
+The browser auth, mission selection/setup, rocket purchases, and mission/crisis results use these APIs when signed in. Guest flows continue to work locally.
 
 ## Pages
-- `index.html` — homepage
-- `auth.html` — login / signup interface
-- `nasa-data.html` — NASA Data topic hub
-- `rockets-spacecraft.html`
-- `space-food.html`
-- `space-power-energy.html`
-- `space-basics.html`
-- `astronaut-life.html`
-- `space-missions-exploration.html`
+- `frontend/index.html` — homepage
+- `frontend/auth.html` — login / signup interface
+- `frontend/nasa-data.html` — NASA Data topic hub
+- `frontend/rockets-spacecraft.html`
+- `frontend/space-food.html`
+- `frontend/space-power-energy.html`
+- `frontend/space-basics.html`
+- `frontend/astronaut-life.html`
+- `frontend/space-missions-exploration.html`
 
-All six topic detail pages use their matching image in `assets/` as the hero background. The shared header uses the homepage styles. Topic information is educational overview content; links open public NASA resources. Authentication is frontend-only until a backend is connected.
+All six topic detail pages use their matching image in `frontend/assets/` as the hero background. The shared header uses the homepage styles. Topic information is educational overview content; links open public NASA resources.
 
 ## Space Store
-- Open `store.html` to explore the new Space Store page.
-- Store assets: `assets/space-store-bg.png`, `assets/store-rockets.png`, `assets/store-crew.png`, and `assets/store-upgrades.png`.
-- Store categories are frontend previews; inventory, purchases, and unlocks are not connected to a backend yet.
+- Open `frontend/store.html` to explore the new Space Store page.
+- Store assets: `frontend/assets/space-store-bg.png`, `frontend/assets/store-rockets.png`, `frontend/assets/store-crew.png`, and `frontend/assets/store-upgrades.png`.
+- Store purchases and inventory are persisted for signed-in accounts; guest purchases remain temporary.
 
 ### Store page layout update
-- The generated `assets/space-store-bg.png` now covers the full Store page background.
+- The generated `frontend/assets/space-store-bg.png` now covers the full Store page background.
 - The Store page displays only the SPACE STORE heading and the Rockets, Crew, and Upgrades category cards.
-- The extra detail sections, demo note, and footer content below the cards have been removed from `store.html`.
+- The extra detail sections, demo note, and footer content below the cards have been removed from `frontend/store.html`.
 
 
 ## Mission Selection page
-Open `mission-selection.html` directly or click **Start Mission** on the homepage. Select Moon or Mars to save the selected destination in localStorage and continue to `rocket-hangar.html`.
+Open `frontend/mission-selection.html` directly or click **Start Mission** on the homepage. Select Moon or Mars to save the selected destination locally; signed-in players also save the mission to the Django API.
 
-\n## Tutorial / How it works\n- Click **How it works** in the shared header to open `tutorial.html`.\n- Tutorial imagery is stored in `assets/tutorial/` to avoid overwriting existing project assets.\n- Tutorial page uses Inter typography and matches the shared ASTRAQUEST navigation.\n- Tutorial actions link to the existing mission selection, launch sequence, Moon dashboard, mission results, and NASA Data pages.\n
+## Tutorial / How it works
+- Click **How it works** in the shared header to open `frontend/tutorial.html`.
+- Tutorial imagery is stored in `frontend/assets/tutorial/` to avoid overwriting existing project assets.
+- Tutorial page uses Inter typography and matches the shared ASTRAQUEST navigation.
+- Tutorial actions link to the existing mission selection, launch sequence, Moon dashboard, mission results, and NASA Data pages.
 
 ## Space Food Rescue
 - Start from the Moon Mission Dashboard event card.
 - Catch ten drifting food packets in 20 seconds using arrow keys, A/D, or touch/drag controls.
 - Complete the five-question science check; the mini-game and quiz scores combine for a crisis score out of 10.
-- Food stock changes are saved in localStorage and reflected in the dashboard. This frontend prototype does not yet use a backend mission scheduler.
+- Food stock changes are saved in localStorage and reflected in the dashboard. Signed-in players also save crisis and completed-mission results to the backend.
 
 
 ## Automatic mission clock and crisis alerts
@@ -51,4 +103,4 @@ Open `mission-selection.html` directly or click **Start Mission** on the homepag
 
 
 ### Space Food Rescue UI pipeline
-The crisis alert opens automatically from the mission schedule. Responding opens the dashboard-shell mini-game: instructions, gameplay, final countdown, final moments, mini-game complete, five-question science quiz, and combined crisis result. The supplied `assets/space-food.png` image is used as the spacecraft food-scene backdrop.
+The crisis alert opens automatically from the mission schedule. Responding opens the dashboard-shell mini-game: instructions, gameplay, final countdown, final moments, mini-game complete, five-question science quiz, and combined crisis result. The supplied `frontend/assets/space-food.png` image is used as the spacecraft food-scene backdrop.

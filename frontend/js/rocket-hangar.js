@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   if (window.lucide) window.lucide.createIcons();
 
   const rockets = [
@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
   let activeView = 'owned';
   let selectedId = 'moon-explorer';
   let pendingPurchaseId = null;
+  const api = window.AstraquestApi;
+  const accountSession = api.isAuthenticated();
+  let backendStoreLoaded = false;
+  let backendStoreError = '';
 
   const grid = document.getElementById('rocketGrid');
   const selectionPanel = document.getElementById('selectionPanel');
@@ -161,12 +165,29 @@ document.addEventListener('DOMContentLoaded', () => {
     purchaseDialog.showModal();
   });
 
-  document.getElementById('confirmPurchase').addEventListener('click', event => {
+  document.getElementById('confirmPurchase').addEventListener('click', async event => {
     event.preventDefault();
     const r = rockets.find(item => item.id === pendingPurchaseId);
     if (!r || r.owned) { purchaseDialog.close(); return; }
+    if (accountSession && !backendStoreLoaded) {
+      document.getElementById('actionMessage').textContent = backendStoreError || 'Your store inventory could not be loaded. Reload and try again.';
+      return;
+    }
     if (coinBalance < r.price) { purchaseDialog.close(); document.getElementById('actionMessage').textContent = 'Your coin balance is too low.'; return; }
-    coinBalance -= r.price;
+    if (accountSession) {
+      try {
+        const result = await api.request('/api/store/purchases/', {
+          method: 'POST',
+          body: { item_code: r.id }
+        });
+        coinBalance = result.coins;
+      } catch (error) {
+        document.getElementById('actionMessage').textContent = error.message || 'The purchase could not be completed.';
+        return;
+      }
+    } else {
+      coinBalance -= r.price;
+    }
     r.owned = true;
     r.status = 'Owned';
     document.getElementById('coinBalance').textContent = money(coinBalance);
@@ -174,7 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
     activeView = 'owned';
     document.querySelectorAll('[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === 'owned'));
     selectRocket(r.id);
-    document.getElementById('actionMessage').textContent = `${r.name} unlocked! This demo stores purchases only for the current page session.`;
+    document.getElementById('actionMessage').textContent = accountSession
+      ? `${r.name} unlocked and saved to your account.`
+      : `${r.name} unlocked for this page session. Sign in to save store purchases.`;
   });
   document.getElementById('upgradeAction').addEventListener('click', () => {
     const r = getSelected();
@@ -185,7 +208,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // The documentation gives Explorer/Voyager/Pioneer capacity examples and upgrade costs;
   // the rocket unlock prices above are provisional UI values pending confirmation.
+  if (accountSession) {
+    try {
+      const inventory = await api.request('/api/store/inventory/');
+      coinBalance = inventory.profile.coins;
+      const ownedCodes = new Set(inventory.items.map(purchase => purchase.item.code));
+      rockets.forEach(rocket => {
+        if (ownedCodes.has(rocket.id)) rocket.owned = true;
+      });
+      backendStoreLoaded = true;
+    } catch (error) {
+      backendStoreError = error.message || 'The store inventory could not be loaded.';
+    }
+  }
   document.getElementById('diamondBalance').textContent = money(diamondBalance);
+  document.getElementById('coinBalance').textContent = money(coinBalance);
   renderGrid();
   selectRocket(selectedId);
+  if (backendStoreError) document.getElementById('actionMessage').textContent = backendStoreError;
 });

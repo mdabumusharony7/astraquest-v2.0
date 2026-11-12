@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   Map,
@@ -9,11 +9,83 @@ import {
 } from "lucide-react";
 import "../css/shared-header.css";
 import "../css/style.css";
+import "../js/api-client.js";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef(null);
 
   const closeMenu = () => setMenuOpen(false);
+
+  useEffect(() => {
+    let active = true;
+    const api = window.AstraquestApi;
+    const loadAccount = () => {
+      try {
+        if (!api.isAuthenticated()) {
+          setUser(null);
+          return;
+        }
+        api.request("/api/auth/me/")
+          .then((currentUser) => {
+            if (active) setUser(currentUser);
+          })
+          .catch((error) => {
+            if (active && !api.isAuthenticated()) setUser(null);
+            console.error("Could not load the signed-in commander profile.", error);
+          });
+      } catch (error) {
+        console.error("Could not read the saved commander session.", error);
+      }
+    };
+
+    const syncAccount = (event) => {
+      if (
+        !event ||
+        event.type === "astraquest:profile-updated" ||
+        event.key === "astraquestTokens"
+      ) {
+        loadAccount();
+      }
+    };
+    loadAccount();
+    window.addEventListener("storage", syncAccount);
+    document.addEventListener("astraquest:profile-updated", syncAccount);
+
+    return () => {
+      active = false;
+      window.removeEventListener("storage", syncAccount);
+      document.removeEventListener("astraquest:profile-updated", syncAccount);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!profileOpen) return undefined;
+
+    const closeOnOutsideClick = (event) => {
+      if (!profileRef.current?.contains(event.target)) setProfileOpen(false);
+    };
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setProfileOpen(false);
+    };
+    document.addEventListener("click", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("click", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [profileOpen]);
+
+  const displayName = user?.profile?.display_name || "";
+  const profileInitials = displayName
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join("") || "A";
 
   return (
     <header className="site-header">
@@ -42,10 +114,48 @@ function Header() {
         <a className="nav-link" href="nasa-data.html" onClick={closeMenu}>NASA Data</a>
         <a className="nav-link" href="store.html" onClick={closeMenu}>Store</a>
       </nav>
-      <div className="auth-nav">
-        <a href="auth.html?mode=signup">Sign Up</a>
-        <a href="auth.html?mode=login">Log In</a>
-      </div>
+      {user ? (
+        <div className="auth-nav account-nav">
+          <div className="profile-wrap" ref={profileRef}>
+            <button
+              className="profile-button"
+              type="button"
+              aria-label={`Account menu for ${displayName}`}
+              aria-expanded={profileOpen}
+              aria-haspopup="true"
+              onClick={() => setProfileOpen((open) => !open)}
+            >
+              <span className="profile-avatar" aria-hidden="true">{profileInitials}</span>
+              <span className="profile-label">{displayName}</span>
+            </button>
+            {profileOpen && (
+              <div className="profile-menu" role="menu">
+                <div className="profile-summary">
+                  <strong>{displayName}</strong>
+                  <span>{user.email}</span>
+                </div>
+                <a href="profile.html" role="menuitem" onClick={closeMenu}>View profile</a>
+                <button
+                  type="button"
+                  role="menuitem"
+                  onClick={() => {
+                    window.AstraquestApi.clearTokens();
+                    setUser(null);
+                    setProfileOpen(false);
+                  }}
+                >
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className="auth-nav">
+          <a href="auth.html?mode=signup">Sign Up</a>
+          <a href="auth.html?mode=login">Log In</a>
+        </div>
+      )}
     </header>
   );
 }

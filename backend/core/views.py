@@ -48,6 +48,16 @@ class CommanderView(APIView):
         )
         return Response(CommanderSerializer(request.user).data)
 
+    def patch(self, request):
+        serializer = CommanderSerializer(
+            request.user,
+            data=request.data,
+            partial=True,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
 
 class MissionViewSet(
     mixins.CreateModelMixin,

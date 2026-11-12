@@ -20,14 +20,28 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ["display_name", "coins", "diamonds"]
         read_only_fields = ["coins", "diamonds"]
 
+    def validate_display_name(self, value):
+        value = value.strip()
+        if not value:
+            raise serializers.ValidationError("A commander name is required.")
+        return value
+
 
 class CommanderSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(read_only=True)
+    profile = ProfileSerializer(required=False)
 
     class Meta:
         model = Commander
         fields = ["id", "email", "profile"]
-        read_only_fields = fields
+        read_only_fields = ["id", "email"]
+
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop("profile", {})
+        instance = super().update(instance, validated_data)
+        if "display_name" in profile_data:
+            instance.profile.display_name = profile_data["display_name"]
+            instance.profile.save(update_fields=["display_name"])
+        return instance
 
 
 class RegistrationSerializer(serializers.Serializer):

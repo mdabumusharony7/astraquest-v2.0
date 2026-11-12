@@ -79,6 +79,33 @@ class ApiTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn("access", response.data)
 
+    def test_profile_can_be_read_and_display_name_updated(self):
+        self.authenticate()
+        profile = self.client.get("/api/auth/me/")
+        self.assertEqual(profile.status_code, status.HTTP_200_OK)
+        self.assertEqual(profile.data["profile"]["display_name"], "commander")
+
+        updated = self.client.patch(
+            "/api/auth/me/",
+            {"profile": {"display_name": "Nova"}},
+            format="json",
+        )
+        self.assertEqual(updated.status_code, status.HTTP_200_OK)
+        self.assertEqual(updated.data["profile"]["display_name"], "Nova")
+        self.profile.refresh_from_db()
+        self.assertEqual(self.profile.display_name, "Nova")
+
+    def test_profile_rejects_empty_display_name(self):
+        self.authenticate()
+
+        response = self.client.patch(
+            "/api/auth/me/",
+            {"profile": {"display_name": "  "}},
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
     def test_missions_require_authentication_and_are_user_scoped(self):
         self.assertEqual(
             self.client.get("/api/missions/").status_code,

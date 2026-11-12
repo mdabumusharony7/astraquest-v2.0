@@ -24,15 +24,18 @@
     window.sessionStorage.removeItem(TOKEN_KEY);
   }
 
-  function formatError(data, fallback) {
-    if (typeof data === "string") return data;
-    if (data?.detail) return data.detail;
+  function formatError(data, fallback, prefix = "") {
+    if (typeof data === "string") return prefix ? `${prefix}: ${data}` : data;
+    if (Array.isArray(data)) {
+      return data.map((item) => formatError(item, fallback, prefix)).join(" ");
+    }
     if (!data || typeof data !== "object") return fallback;
+    if (data.detail) return data.detail;
 
     return Object.entries(data)
       .map(([field, messages]) => {
-        const text = Array.isArray(messages) ? messages.join(" ") : String(messages);
-        return field === "non_field_errors" ? text : `${field}: ${text}`;
+        const label = field === "non_field_errors" ? prefix : [prefix, field].filter(Boolean).join(".");
+        return formatError(messages, fallback, label);
       })
       .join(" ");
   }

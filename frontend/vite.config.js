@@ -6,6 +6,8 @@ import react from "@vitejs/plugin-react";
 
 const root = fileURLToPath(new URL(".", import.meta.url));
 const htmlPages = readdirSync(root).filter((file) => file.endsWith(".html"));
+const apiProxyTarget =
+  process.env.VITE_API_PROXY_TARGET || "http://127.0.0.1:8000";
 
 export default defineConfig({
   plugins: [
@@ -24,7 +26,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      "/api": "http://127.0.0.1:8000",
+      "/api": apiProxyTarget,
     },
   },
   build: {

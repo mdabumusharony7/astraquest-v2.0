@@ -29,7 +29,7 @@ cd frontend
 npm install
 npm run dev
 ```
-Open the local URL printed by Vite. Vite proxies `/api` requests to Django on port 8000.
+Open the local URL printed by Vite. Vite proxies `/api` requests to Django on port 8000; set `VITE_API_PROXY_TARGET` if Django runs on a different port.
 
 For API tests without PostgreSQL:
 `cd backend && DJANGO_DEBUG=True DATABASE_URL=sqlite:///:memory: python manage.py test`
@@ -52,7 +52,7 @@ production builds.
 - `GET /api/leaderboard/`
 - `GET /admin/` for the Django admin.
 
-The browser auth, mission selection/setup, rocket purchases, and mission/crisis results use these APIs when signed in. Guest flows continue to work locally.
+The browser auth, mission selection/setup, rocket purchases, mission/crisis results, and commander profile use these APIs when signed in. The shared header displays the signed-in commander profile and logout menu instead of Sign Up / Log In. Guest flows continue to work locally.
 
 ## Pages
 - `frontend/index.html` — homepage

@@ -13,6 +13,30 @@ html body[class] .site-header .nav-link.active::after { content:""; position:abs
 html body[class] .site-header .auth-nav { display:flex; align-items:center; gap:8px; margin-left:8px; }
 html body[class] .site-header .auth-nav a { font-size:11px; color:#e8efff; text-decoration:none; border:1px solid #2874ce; border-radius:7px; padding:4px 8px; white-space:nowrap; }
 html body[class] .site-header .auth-nav a:hover { background:#167ee8; }
+html body[class] .site-header .auth-nav.account-nav { margin-left:8px; }
+html body[class] .site-header .profile-wrap { margin-left:0; }
+html body[class] .site-header .profile-button {
+  width:auto; height:40px; min-width:40px; padding:3px 10px 3px 4px; gap:8px;
+  display:flex; align-items:center; justify-content:flex-start; border-radius:22px;
+}
+html body[class] .site-header .profile-button:hover { background:#0b2b46; }
+html body[class] .site-header .profile-avatar {
+  width:30px; height:30px; display:grid; place-items:center; flex:0 0 auto;
+  border-radius:50%; color:#031020; background:#00c8ff; font-size:12px; font-weight:800;
+}
+html body[class] .site-header .profile-label {
+  max-width:110px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color:#e8efff; font-size:11px; font-weight:600;
+}
+html body[class] .site-header .profile-menu { z-index:110; }
+html body[class] .site-header .profile-summary {
+  display:flex; flex-direction:column; gap:4px; padding:4px 10px 12px;
+  border-bottom:1px solid #ffffff20; margin-bottom:5px;
+}
+html body[class] .site-header .profile-summary strong { margin:0; color:#f5f8ff; }
+html body[class] .site-header .profile-summary span { color:#b6c8dc; font-size:12px; overflow-wrap:anywhere; }
+html body[class] .site-header .profile-menu button,
+html body[class] .site-header .profile-menu a { width:100%; text-align:left; font-size:13px; }
 html body[class] .site-header .mobile-menu { display:none; }
 @media(max-width:900px) {
   html body[class] .site-header { gap:12px; padding-right:14px; }
@@ -29,5 +53,9 @@ html body[class] .site-header .mobile-menu { display:none; }
   html body[class] .site-header .nav-link { min-height:42px; font-size:13px; }
   html body[class] .site-header .nav-link.active::after { display:none; }
   html body[class] .site-header .auth-nav { margin-left:auto; gap:5px; }
+  html body[class] .site-header .auth-nav.account-nav { margin-left:auto; }
   html body[class] .site-header .auth-nav a { padding:5px 6px; font-size:10px; }
+  html body[class] .site-header .profile-wrap { margin-left:0; }
+  html body[class] .site-header .profile-button { width:38px; min-width:38px; height:38px; padding:3px; }
+  html body[class] .site-header .profile-label { display:none; }
 }
